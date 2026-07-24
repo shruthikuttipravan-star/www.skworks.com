@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-<title>Shruthi Kuttipravan — Marketing Executive | Pixel OS Portfolio</title>
-<meta name="description" content="Shruthi Kuttipravan — Marketing Executive. A retro pixel-art macOS-style interactive portfolio.">
+<title>Shruthi Kuttipravan — Marketing &amp; PR Executive | SHRUTHI OS</title>
+<meta name="description" content="Shruthi Kuttipravan — Marketing &amp; PR Executive. Luxury hospitality stories, told louder. Explore campaigns for Sheraton Maldives, Lapita Dubai, The H Dubai and more inside a playful pixel-art desktop portfolio.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23f6c9d8'/%3E%3Crect x='3' y='3' width='10' height='10' fill='%23fff3f8'/%3E%3Crect x='5' y='6' width='2' height='2' fill='%23543a52'/%3E%3Crect x='9' y='6' width='2' height='2' fill='%23543a52'/%3E%3Crect x='5' y='10' width='6' height='1' fill='%23543a52'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -16,10 +16,10 @@
     <div class="boot-logo" aria-hidden="true">
       <svg viewBox="0 0 32 32" class="boot-logo-svg"><g id="boot-logo-pixels"></g></svg>
     </div>
-    <div class="boot-title">SK&nbsp;OS</div>
-    <div class="boot-sub">shruthi kuttipravan · marketing executive</div>
+    <div class="boot-title">SHRUTHI&nbsp;OS</div>
+    <div class="boot-sub">marketing &amp; pr executive · luxury hospitality</div>
 
-    <button id="power-btn" class="pixel-btn pixel-corners">▸ POWER ON</button>
+    <button id="power-btn" class="pixel-btn pixel-corners">POWER ON &gt;&gt;</button>
 
     <div id="boot-progress-wrap" class="hidden">
       <div class="boot-bar pixel-corners"><div id="boot-bar-fill"></div></div>
@@ -30,7 +30,7 @@
 </div>
 
 <!-- ============ DESKTOP ============ -->
-<div id="desktop" class="hidden">
+<div id="desktop" class="hidden scanlines">
 
   <!-- floating clouds -->
   <div id="clouds-layer" aria-hidden="true"></div>
@@ -39,12 +39,7 @@
   <header id="menubar">
     <div class="menubar-left">
       <button id="logo-menu-btn" class="menu-item logo-item" aria-haspopup="true" aria-expanded="false">
-        <svg class="menu-face" viewBox="0 0 8 8" width="16" height="16" shape-rendering="crispEdges">
-          <rect width="8" height="8" fill="#ff8fb3"/>
-          <rect x="2" y="3" width="1" height="1" fill="#402b3d"/>
-          <rect x="5" y="3" width="1" height="1" fill="#402b3d"/>
-          <rect x="3" y="5" width="2" height="1" fill="#402b3d"/>
-        </svg>
+        <span class="icon-art menu-logo" data-icon="logo-cloud"></span>
       </button>
       <div id="logo-dropdown" class="dropdown pixel-corners hidden">
         <button data-action="about" class="dropdown-item">About This Portfolio</button>
@@ -53,46 +48,49 @@
         <div class="dropdown-sep"></div>
         <a href="mailto:shruthi.kuttipravan@gmail.com" class="dropdown-item">Email Shruthi</a>
       </div>
-      <span class="menu-item menu-name">Shruthi Kuttipravan</span>
-      <span class="menu-item menu-tag hide-sm">Marketing Executive</span>
+      <span class="menu-item menu-name">Shruthi Kuttipravan — Marketing &amp; PR Executive</span>
     </div>
     <div class="menubar-right">
-      <button id="sound-toggle" class="menu-item icon-btn" title="Toggle sound" aria-label="Toggle sound">🔊</button>
-      <span id="clock" class="menu-item clock">00:00 AM</span>
+      <button id="share-btn" class="menu-item icon-btn share-btn" title="Copy portfolio link" aria-label="Copy portfolio link">
+        <span class="icon-art" data-icon="share"></span><span class="share-label hide-sm">SHARE</span>
+      </button>
+      <button id="sound-toggle" class="menu-item icon-btn" title="Toggle sound" aria-label="Toggle sound">
+        <span class="icon-art" data-icon="speaker"></span>
+      </button>
+      <span id="menu-date" class="menu-item hide-sm">Sat, Jul 25</span>
+      <span id="clock" class="menu-item clock">00:00:00 AM</span>
     </div>
   </header>
+  <div id="toast" class="pixel-corners hidden">Link copied!</div>
 
   <!-- sticky note -->
   <div id="sticky-note" class="pixel-corners">
     <div class="sticky-pin"></div>
-    <p>turning brand briefs into 8-bit worthy campaigns ✦ luxury hospitality marketing, Maldives → Dubai → beyond</p>
+    <p>"Luxury hospitality stories, told louder."</p>
+    <p class="sticky-attr">— Shruthi</p>
   </div>
 
   <!-- desktop icons -->
   <div id="icons-layer">
-    <button class="desktop-icon" data-window="about" data-sound="click">
-      <span class="icon-art" data-icon="badge"></span>
-      <span class="icon-label">About_Me</span>
+    <button class="desktop-icon" data-window="lapita" data-sound="click" aria-label="Open Lapita Dubai Parks &amp; Resorts">
+      <span class="icon-art" data-icon="megaphone"></span>
+      <span class="icon-label">Lapita Dubai Parks &amp; Resorts</span>
     </button>
-    <button class="desktop-icon" data-window="resume" data-sound="click">
-      <span class="icon-art" data-icon="resume"></span>
-      <span class="icon-label">Resume.pdf</span>
+    <button class="desktop-icon" data-window="hdubai" data-sound="click" aria-label="Open The H Dubai">
+      <span class="icon-art" data-icon="newspaper"></span>
+      <span class="icon-label">The H Dubai</span>
     </button>
-    <button class="desktop-icon" data-window="sheraton" data-sound="click">
-      <span class="icon-art" data-icon="gift"></span>
-      <span class="icon-label">Sheraton_Festive</span>
+    <button class="desktop-icon" data-window="victor" data-sound="click" aria-label="Open Victor Magazine">
+      <span class="icon-art" data-icon="pager"></span>
+      <span class="icon-label">Victor Magazine</span>
     </button>
-    <button class="desktop-icon" data-window="lapita" data-sound="click">
-      <span class="icon-art" data-icon="map"></span>
-      <span class="icon-label">Lapita_Collaterals</span>
+    <button class="desktop-icon" data-window="sheraton" data-sound="click" aria-label="Open Sheraton Maldives">
+      <span class="icon-art" data-icon="calendar"></span>
+      <span class="icon-label">Sheraton Maldives</span>
     </button>
-    <button class="desktop-icon" data-window="contact" data-sound="click">
-      <span class="icon-art" data-icon="mail"></span>
-      <span class="icon-label">Contact_Me</span>
-    </button>
-    <button class="desktop-icon" id="trash-icon" data-window="trash" data-sound="click">
+    <button class="desktop-icon" id="trash-icon" data-window="trash" data-sound="click" aria-label="Open Rejected Concepts">
       <span class="icon-art" data-icon="trash"></span>
-      <span class="icon-label">Rejected_Concepts</span>
+      <span class="icon-label">Rejected Concepts</span>
     </button>
   </div>
 
@@ -106,23 +104,24 @@
 
   <!-- dock -->
   <nav id="dock" class="pixel-corners">
-    <button class="dock-icon" data-window="about" data-sound="click" title="About Me">
+    <button class="dock-icon" data-window="about" data-sound="click" aria-label="About Me">
+      <span class="dock-tooltip">About Me</span>
       <span class="icon-art" data-icon="badge"></span>
     </button>
-    <button class="dock-icon" data-window="resume" data-sound="click" title="Resume">
-      <span class="icon-art" data-icon="resume"></span>
+    <button class="dock-icon" data-window="projects" data-sound="click" aria-label="Projects">
+      <span class="dock-tooltip">Projects</span>
+      <span class="icon-art" data-icon="megaphone"></span>
     </button>
-    <button class="dock-icon" data-window="sheraton" data-sound="click" title="Sheraton Maldives — Festive">
-      <span class="icon-art" data-icon="gift"></span>
-    </button>
-    <button class="dock-icon" data-window="lapita" data-sound="click" title="Lapita Dubai Parks &amp; Resorts">
-      <span class="icon-art" data-icon="map"></span>
-    </button>
-    <button class="dock-icon" data-window="contact" data-sound="click" title="Contact">
+    <button class="dock-icon" data-window="contact" data-sound="click" aria-label="Contact">
+      <span class="dock-tooltip">Contact</span>
       <span class="icon-art" data-icon="mail"></span>
     </button>
-    <span class="dock-sep"></span>
-    <button class="dock-icon" data-window="trash" data-sound="click" title="Rejected Concepts">
+    <button class="dock-icon" data-window="resume" data-sound="click" aria-label="Resume">
+      <span class="dock-tooltip">Resume</span>
+      <span class="icon-art" data-icon="resume"></span>
+    </button>
+    <button class="dock-icon" data-window="trash" data-sound="click" aria-label="Rejected Concepts">
+      <span class="dock-tooltip">Rejected Concepts</span>
       <span class="icon-art" data-icon="trash"></span>
     </button>
   </nav>
@@ -137,7 +136,7 @@
       <svg class="about-avatar" viewBox="0 0 16 16" shape-rendering="crispEdges"><g id="avatar-pixels"></g></svg>
       <div>
         <h2>Shruthi Kuttipravan</h2>
-        <p class="about-role">Marketing Executive · Luxury Hospitality</p>
+        <p class="about-role">Marketing &amp; PR Executive · Luxury Hospitality</p>
         <p class="about-loc">📍 Bengaluru, Karnataka · previously Maldives &amp; UAE</p>
       </div>
     </div>
@@ -265,6 +264,92 @@
   </div>
 </template>
 
+<template id="tpl-hdubai">
+  <div class="win-content project-content">
+    <p class="project-role">Marketing Intern · The H Dubai · Sep 2023 – Mar 2024</p>
+    <p class="project-blurb">Early-career groundwork in hotel marketing: creative copy, CMS upkeep, and the analytics/CRM reporting that keeps a property's digital presence honest and on-brand.</p>
+    <div class="chip-row">
+      <span class="chip">Copywriting</span>
+      <span class="chip">CMS &amp; Website</span>
+      <span class="chip">Analytics</span>
+      <span class="chip">CRM Reporting</span>
+    </div>
+    <div class="resume-stats">
+      <div class="stat pixel-corners"><strong>30+</strong><span>creative copy pieces crafted</span></div>
+      <div class="stat pixel-corners"><strong>+5%</strong><span>website performance improvement</span></div>
+    </div>
+    <p class="project-blurb">Strengthened brand visibility by writing and proofreading copy across campaigns, guest communications and digital platforms. Kept CMS content accurate and tracked analytics to identify optimization opportunities — the fixes behind that +5% lift. Monitored digital performance metrics weekly and compiled the CRM &amp; marketing reports stakeholders used to shape strategy.</p>
+  </div>
+</template>
+
+<template id="tpl-victor">
+  <div class="win-content project-content">
+    <p class="project-role">Editorial Contributor · Victor Magazine · Issue 8, December 2021</p>
+    <p class="project-blurb">Published contributor in Victor Magazine (Issue 8, December 2021) — co-created the "Winter Food Vibes: The Holiday Season Begins" feature, a 3-course Middle Eastern-inspired winter menu editorial, as part of the Amity University Dubai hospitality team.</p>
+    <div class="chip-row">
+      <span class="chip">Editorial</span>
+      <span class="chip">Publishing</span>
+      <span class="chip">F&amp;B</span>
+      <span class="chip">Food Writing</span>
+    </div>
+    <div class="feature-block pixel-corners">
+      <p class="feature-title">"Winter Food Vibes: The Holiday Season Begins"</p>
+      <p class="feature-byline">By Diogo Davidson Albuquerque — Instructor, Chef Trainer (Amity University, Dubai)<br>Student Team: Anjali Nair, Shruthi Kuttipravan, Chantel Barrett &amp; Abhishek Achary, Bachelor of Hotel Management<br>with Ms. Jobelyn Licardo, Hospitality Lab Assistant</p>
+      <ul class="recipe-list">
+        <li>Roasted Butternut Squash Soup with Kaffir-scented Coconut Cream</li>
+        <li>Baharat-spiced Braised Lamb Shanks with Creamy Mash and Grilled Vegetables</li>
+        <li>Warm Churros with Rose and Pistachio Crème Anglaise</li>
+      </ul>
+    </div>
+    <h3>High Scores</h3>
+    <ul class="cert-list">
+      <li>Featured in a national lifestyle magazine alongside festive travel, fashion week and gift guide editorial</li>
+      <li>Co-developed and styled a 3-course winter menu story — from Baharat-spiced lamb shanks to rose &amp; pistachio churros</li>
+      <li>Collaborated with chef trainers and the hospitality lab team on recipe development and food writing</li>
+    </ul>
+  </div>
+</template>
+
+<template id="tpl-projects">
+  <div class="win-content projects-hub-content">
+    <p class="project-blurb">Four campaigns, one thread: luxury hospitality stories, told louder. Pick a case study.</p>
+    <div class="hub-list">
+      <div class="hub-card pixel-corners">
+        <span class="icon-art hub-icon" data-icon="megaphone"></span>
+        <div class="hub-text">
+          <p class="hub-title">Lapita Dubai Parks &amp; Resorts</p>
+          <p>Sales tools, signage and F&amp;B menus across the Dubai Parks and Resorts ecosystem.</p>
+        </div>
+        <button class="pixel-btn pixel-corners hub-btn" data-open="lapita">View Case Study &gt;&gt;</button>
+      </div>
+      <div class="hub-card pixel-corners">
+        <span class="icon-art hub-icon" data-icon="newspaper"></span>
+        <div class="hub-text">
+          <p class="hub-title">The H Dubai</p>
+          <p>Copywriting, CMS upkeep and the analytics groundwork that lifted site performance 5%.</p>
+        </div>
+        <button class="pixel-btn pixel-corners hub-btn" data-open="hdubai">View Case Study &gt;&gt;</button>
+      </div>
+      <div class="hub-card pixel-corners">
+        <span class="icon-art hub-icon" data-icon="pager"></span>
+        <div class="hub-text">
+          <p class="hub-title">Victor Magazine</p>
+          <p>A published 3-course winter menu editorial, Issue 8, December 2021.</p>
+        </div>
+        <button class="pixel-btn pixel-corners hub-btn" data-open="victor">View Case Study &gt;&gt;</button>
+      </div>
+      <div class="hub-card pixel-corners">
+        <span class="icon-art hub-icon" data-icon="calendar"></span>
+        <div class="hub-text">
+          <p class="hub-title">Sheraton Maldives</p>
+          <p>Festive-season print collateral and guest communications, Marriott brand guidelines.</p>
+        </div>
+        <button class="pixel-btn pixel-corners hub-btn" data-open="sheraton">View Case Study &gt;&gt;</button>
+      </div>
+    </div>
+  </div>
+</template>
+
 <template id="tpl-contact">
   <div class="win-content contact-content">
     <p class="mail-field"><strong>To:</strong> shruthi.kuttipravan@gmail.com</p>
@@ -295,7 +380,7 @@
       <li><span class="trash-name">hamster-wheel-loading-animation.gif</span><span class="trash-tag">REJECTED — too real</span></li>
       <li><span class="trash-name">resume-as-a-rap.mp3</span><span class="trash-tag">REJECTED — legal said no</span></li>
       <li><span class="trash-name">clippy_cameo_final.psd</span><span class="trash-tag">REJECTED — he wouldn't leave</span></li>
-      <li><span class="trash-name">final_FINAL_v9_pixelOS.html</span><span class="trash-tag trash-accepted">SHIPPED ✓</span></li>
+      <li><span class="trash-name">final_FINAL_v9_pixelOS.html</span><span class="trash-tag trash-accepted">SHIPPED (OK)</span></li>
     </ul>
     <p class="trash-outro">you found the easter egg. hi. 👋</p>
   </div>

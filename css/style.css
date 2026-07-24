@@ -7,20 +7,21 @@
 }
 
 :root {
-  --ink: #4a3350;
-  --ink-soft: #6b5570;
+  --ink: #2b2140;
+  --ink-soft: #6d5f81;
   --cream: #fff7f2;
   --pink: #ffcfe0;
   --peach: #ffe3c2;
   --lavender: #dccdf5;
   --pink-deep: #ff9fc0;
   --lavender-deep: #b79cea;
-  --shadow: rgba(74, 51, 80, 0.35);
+  --shadow: rgba(43, 33, 64, 0.3);
   --window-bg: #fffaf6;
   --titlebar: linear-gradient(180deg, #ffd9e8 0%, #ffc7dd 100%);
   --accent-green: #b9e8b0;
   --accent-yellow: #ffe9a8;
   --accent-red: #ffb3b8;
+  --sticky-yellow: #fdf3a6;
   --pixel: 4px;
   --font-pixel: "Press Start 2P", "Courier New", monospace;
 }
@@ -38,7 +39,7 @@ html, body {
 }
 
 body {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h2v2h2v2h2v2h2v2h2v2h-2v2h-2v-2h-2v2h-2v2H6v2H4V2z' fill='%23fff'/%3E%3Cpath d='M6 2h2v2h2v2h2v2h2v2h2v2h-2v2h-2v-2h-2v2h-2v2H6v2H4V2z' fill='none' stroke='%234a3350' stroke-width='1'/%3E%3C/svg%3E") 4 4, auto;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h2v2h2v2h2v2h2v2h2v2h-2v2h-2v-2h-2v2h-2v2H6v2H4V2z' fill='%23fff'/%3E%3Cpath d='M6 2h2v2h2v2h2v2h2v2h2v2h-2v2h-2v-2h-2v2h-2v2H6v2H4V2z' fill='none' stroke='%232b2140' stroke-width='1'/%3E%3C/svg%3E") 4 4, auto;
 }
 
 .hidden { display: none !important; }
@@ -146,41 +147,77 @@ svg { display: block; }
 #desktop {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #ffd1dc 0%, #ffe0c2 40%, #ffc9e0 65%, #d9c9f5 100%);
-  background-size: 200% 200%;
-  animation: driftGradient 40s ease-in-out infinite;
+  background: linear-gradient(135deg, #ffb6c1 0%, #ffdab9 50%, #e6e6fa 100%);
   overflow: hidden;
 }
-@keyframes driftGradient {
-  0%, 100% { background-position: 0% 30%; }
-  50% { background-position: 100% 70%; }
+.scanlines { position: relative; }
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 3px);
+  mix-blend-mode: overlay;
 }
 
 /* ---------- menu bar ---------- */
 #menubar {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 34px;
-  background: rgba(255, 247, 242, 0.75);
+  height: 36px;
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(4px);
   border-bottom: 3px solid var(--ink);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 12px;
   z-index: 500;
   font-size: 9px;
 }
 .menubar-left, .menubar-right { display: flex; align-items: center; gap: 14px; }
 .menu-item { color: var(--ink); white-space: nowrap; }
 .menu-name { font-size: 9px; }
-.menu-tag { font-size: 8px; color: var(--ink-soft); }
 .logo-item {
   background: none; border: none; cursor: pointer;
   display: flex; align-items: center; padding: 4px;
 }
-.icon-btn { background: none; border: none; cursor: pointer; font-size: 13px; line-height: 1; padding: 2px; }
-.clock { font-size: 9px; min-width: 68px; text-align: right; }
+.menu-logo { width: 20px; height: 9px; filter: none; }
+.icon-btn {
+  background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 4px;
+  color: var(--ink); font-size: 8px;
+  padding: 2px; transition: color 0.1s ease;
+}
+.icon-btn:hover { color: #ff5f8f; }
+.icon-btn .icon-art { width: 14px; height: 14px; filter: none; }
+.icon-btn.muted .icon-art { position: relative; }
+.icon-btn.muted .icon-art::after {
+  content: "";
+  position: absolute;
+  left: -1px; top: 6px;
+  width: 16px; height: 2px;
+  background: #ff5f8f;
+  transform: rotate(-45deg);
+}
+.share-label { font-size: 7.5px; }
+.clock { font-size: 9px; min-width: 78px; text-align: right; font-variant-numeric: tabular-nums; }
+#menu-date { font-size: 8px; color: var(--ink-soft); }
+
+#toast {
+  position: absolute;
+  top: 44px;
+  right: 12px;
+  z-index: 700;
+  background: var(--ink);
+  color: var(--peach);
+  border: 3px solid var(--pink-deep);
+  padding: 8px 12px;
+  font-size: 8px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+#toast.hidden { opacity: 0; transform: translateY(-6px); pointer-events: none; }
 
 .dropdown {
   position: absolute;
@@ -233,46 +270,49 @@ svg { display: block; }
 /* ---------- sticky note ---------- */
 #sticky-note {
   position: absolute;
-  top: 70px;
-  right: 5%;
-  width: 210px;
-  background: var(--accent-yellow);
+  top: 80px;
+  right: 32px;
+  width: 208px;
+  background: var(--sticky-yellow);
   border: 3px solid var(--ink);
   box-shadow: 5px 5px 0 var(--shadow);
   padding: 16px 14px 14px;
   font-size: 9px;
-  line-height: 1.7;
-  transform: rotate(3deg);
+  line-height: 1.9;
   z-index: 50;
   cursor: grab;
-  transition: transform 0.15s ease;
+  animation: sticky-sway 5s ease-in-out infinite;
 }
-#sticky-note:active { cursor: grabbing; }
+#sticky-note:active { cursor: grabbing; animation-play-state: paused; }
 #sticky-note p { margin: 0; }
+#sticky-note .sticky-attr { margin-top: 10px; text-align: right; color: #8a6d3b; font-size: 8px; }
+@keyframes sticky-sway {
+  0%, 100% { transform: rotate(3deg); }
+  50% { transform: rotate(-2deg); }
+}
 .sticky-pin {
   position: absolute;
   top: -10px; left: 50%;
   transform: translateX(-50%);
-  width: 14px; height: 14px;
-  background: var(--pink-deep);
+  width: 32px; height: 12px;
+  background: rgba(255, 159, 192, 0.8);
   border: 2px solid var(--ink);
-  border-radius: 50%;
 }
 
 /* ---------- desktop icons ---------- */
 #icons-layer {
   position: absolute;
-  top: 48px; left: 16px;
+  top: 56px; left: 20px;
   z-index: 20;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  max-height: calc(100vh - 160px);
+  display: grid;
+  grid-template-columns: repeat(2, 96px);
+  column-gap: 16px;
+  row-gap: 20px;
 }
 .desktop-icon {
   background: none;
   border: none;
-  width: 92px;
+  width: 96px;
   padding: 8px 4px;
   display: flex;
   flex-direction: column;
@@ -300,18 +340,17 @@ svg { display: block; }
 /* ---------- character above dock ---------- */
 #character-layer {
   position: absolute;
-  bottom: 78px;
-  left: 50%;
-  transform: translateX(-160px);
+  bottom: 88px;
+  right: 12%;
   z-index: 40;
   pointer-events: none;
 }
 #pixel-girl {
-  width: 56px;
-  height: 77px;
+  width: 116px;
+  height: 160px;
   image-rendering: pixelated;
   animation: girlBob 2.4s ease-in-out infinite;
-  filter: drop-shadow(2px 3px 0 var(--shadow));
+  filter: drop-shadow(4px 4px 0 var(--shadow));
 }
 @keyframes girlBob {
   0%, 100% { transform: translateY(0); }
@@ -392,9 +431,10 @@ svg { display: block; }
   background: none;
   border: none;
   cursor: pointer;
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   padding: 4px;
+  position: relative;
   transition: transform 0.15s ease;
 }
 .dock-icon:hover { transform: translateY(-8px) scale(1.1); }
@@ -406,7 +446,21 @@ svg { display: block; }
   75% { transform: translateY(-6px); }
 }
 .dock-icon .icon-art { width: 100%; height: 100%; filter: drop-shadow(1px 2px 0 var(--shadow)); }
-.dock-sep { width: 2px; height: 40px; background: var(--ink-soft); opacity: 0.4; align-self: center; }
+.dock-tooltip {
+  position: absolute;
+  top: -34px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  white-space: nowrap;
+  background: var(--ink);
+  color: var(--peach);
+  border: 2px solid var(--pink-deep);
+  padding: 6px 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+.dock-icon:hover .dock-tooltip, .dock-icon:focus .dock-tooltip { opacity: 1; }
 
 /* =====================================================
    WINDOW CONTENT
@@ -473,6 +527,39 @@ svg { display: block; }
 .gallery-item span { display: block; font-size: 7.5px; padding: 8px 6px; text-align: center; line-height: 1.5; }
 .gallery-item:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--shadow); }
 
+.feature-block {
+  background: var(--cream);
+  border: 3px solid var(--ink);
+  padding: 14px;
+  margin: 14px 0;
+}
+.feature-title { font-size: 10px; margin: 0 0 8px; }
+.feature-byline { font-size: 8px; color: var(--ink-soft); line-height: 1.8; margin: 0 0 12px; }
+.recipe-list { list-style: none; padding: 0; margin: 0; }
+.recipe-list li {
+  font-size: 8.5px;
+  padding: 7px 0;
+  border-top: 2px dashed var(--pink);
+}
+.recipe-list li:first-child { border-top: none; }
+
+.hub-list { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+.hub-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--cream);
+  border: 3px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--shadow);
+  padding: 12px;
+  flex-wrap: wrap;
+}
+.hub-icon { width: 36px; height: 36px; flex-shrink: 0; filter: drop-shadow(2px 2px 0 var(--shadow)); }
+.hub-text { flex: 1; min-width: 160px; }
+.hub-title { font-size: 9.5px; margin: 0 0 6px; border: none; padding: 0; }
+.hub-text p { font-size: 8.5px; margin: 0; color: var(--ink-soft); }
+.hub-btn { font-size: 8px; padding: 8px 10px; white-space: nowrap; }
+
 .mail-field { font-size: 9px; }
 .mail-body {
   background: var(--cream);
@@ -530,14 +617,16 @@ svg { display: block; }
    ===================================================== */
 @media (max-width: 720px) {
   .hide-sm { display: none; }
-  #icons-layer { top: 42px; left: 8px; gap: 2px; }
-  .desktop-icon { width: 76px; }
+  .menu-name { max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
+  .menubar-left { gap: 8px; }
+  #icons-layer { top: 46px; left: 10px; grid-template-columns: repeat(2, 78px); column-gap: 10px; row-gap: 14px; }
+  .desktop-icon { width: 78px; }
   #sticky-note { width: 150px; top: 60px; right: 4%; font-size: 8px; }
-  #character-layer { transform: translateX(-100px); bottom: 74px; }
-  #pixel-girl { width: 44px; height: 60px; }
+  #character-layer { right: 6%; bottom: 80px; }
+  #pixel-girl { width: 76px; height: 105px; }
   .win { min-width: 88vw !important; max-width: 92vw !important; left: 4vw !important; }
   .win.maximized { left: 2vw !important; width: 96vw !important; }
   #dock { gap: 6px; padding: 8px 10px; }
-  .dock-icon { width: 34px; height: 34px; }
-  .dock-sep { height: 30px; }
+  .dock-icon { width: 38px; height: 38px; }
+  .dock-tooltip { display: none; }
 }

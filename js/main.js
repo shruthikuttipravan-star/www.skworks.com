@@ -48,47 +48,136 @@ const PIXEL_ART = {
     ],
     pal: { K: "#402b3d", W: "#fff7f2", L: "#dccdf5", R: "#ff9fc0" },
   },
-  gift: {
+  megaphone: {
     rows: [
       "................",
       "................",
-      "...K........K...",
-      "..KRK..KK..KRK..",
-      "..KRRKKGGKKRRK..",
-      ".KKRRRGGGRRRKK..",
-      ".KRRRRGGGRRRRK..",
-      ".KRRRRGGGRRRRK..",
-      ".KGGGGGGGGGGGK..",
-      ".KRRRRGGGRRRRK..",
-      ".KRRRRGGGRRRRK..",
-      ".KRRRRGGGRRRRK..",
-      ".KRRRRGGGRRRRK..",
+      "..........KKK...",
+      "........KKGGK.SS",
+      "......KKGGGGK...",
+      "....KKGGGGGGK...",
+      ".KKKGGGGGGGGK...",
+      ".KGGGGGGGGGGK...",
+      ".KGGGGGGGGGGK..S",
+      ".KKKGGGGGGGGK...",
+      "....KKGGGGGGK...",
+      "......KKGGGGK...",
+      "........KKGGK...",
+      "..........KKK.SS",
+      "................",
+      "................",
+    ],
+    pal: { K: "#402b3d", G: "#ff8fa8", S: "#ffd76a" },
+  },
+  newspaper: {
+    rows: [
+      "................",
+      "................",
+      ".KKKKKKKKKKKKKK.",
+      ".KKKKKKKKKKKKKK.",
+      ".KKKKKKKKKKKKKK.",
+      ".KWWWWWWWWWWWWK.",
+      ".KWKKKKKWWWWWWK.",
+      ".KWKKKKKKKWWWWK.",
+      ".KWWWWWWWWWWWWK.",
+      ".KWDDDDWWDDDDDK.",
+      ".KWDDDDDWDDDDDK.",
+      ".KWDDDWWWDDDDWK.",
+      ".KWWWWWWWWWWWWK.",
+      ".KKKKKKKKKKKKKK.",
+      "................",
+      "................",
+    ],
+    pal: { K: "#402b3d", W: "#fff7f2", D: "#dccdf5" },
+  },
+  pager: {
+    rows: [
+      "................",
+      "................",
+      ".....KKKKKK.....",
+      "....KGGGGGGK....",
+      "...KGGGGGGGGK...",
+      "..KKGKKKKKKGKK..",
+      "..KGKWWWWWWKGK..",
+      "..KGKWKPPKWKGK..",
+      "..KGKWPPPPWKGK..",
+      "..KGKWKPPKWKGK..",
+      "..KGKWWWWWWKGK..",
+      "..KGKKKKKKKKGK..",
+      "..KG.O....O.GK..",
+      "..KGG......GGK..",
+      "...KGGGGGGGGK...",
+      "....KKKKKKKK....",
+    ],
+    pal: { K: "#402b3d", G: "#a8e6c1", W: "#fff7f2", P: "#ff6f91", O: "#ff9fc0" },
+  },
+  calendar: {
+    rows: [
+      "................",
+      "................",
+      "...KK....KK.....",
+      "...KK....KK.....",
+      "..KKKKKKKKKKK...",
+      ".KWWWWWWWWWWWK..",
+      ".KWKKKKKKKKKWK..",
+      ".KWKRRKKKKKKWK..",
+      ".KWWWWWWWWWWWK..",
+      ".KWKKWKKWKKKWK..",
+      ".KWKKWKKWKKKWK..",
+      ".KWWWWWWWWWWWK..",
+      ".KWKKWKKWKKKWK..",
+      ".KWWWWWWWWWWWK..",
       ".KKKKKKKKKKKKK..",
       "................",
-      "................",
     ],
-    pal: { K: "#402b3d", R: "#ff8fa8", G: "#ffe08a" },
+    pal: { K: "#402b3d", W: "#fff7f2", R: "#ff6f91" },
   },
-  map: {
+  "logo-cloud": {
     rows: [
       "................",
       "................",
-      "..KKKKKKKKKKKK..",
-      "..KKKKKKKKKKKK..",
-      "..CCCDDDCCDDCC..",
-      "..CCCDDDCCDDCC..",
-      "..CCCDDDCCTTCC..",
-      "..CCCDDDCTRRCC..",
-      "..CCCDDDTTRRCC..",
-      "..CCTDDDCCDDCC..",
-      "..CTDDDDCCDDCC..",
-      "..CCCDDDCCDDCC..",
-      "..CCCDDDCCDDCC..",
-      "..KKKKKKKKKKKK..",
-      "................",
+      "...KKKKKKKK.....",
+      "...KFFFFFFKKK...",
+      "..KFFFFFFFFFFK..",
+      ".KFFFFFFFFFFFFK.",
+      "KFFFFFFFFFFFFFFK",
       "................",
     ],
-    pal: { K: "#402b3d", C: "#fff2d6", D: "#e0b96a", T: "#7a5443", R: "#ff5f7a" },
+    pal: { K: "#2b2140", F: "#ff9fc0" },
+  },
+  share: {
+    rows: [
+      "............",
+      ".......KKK..",
+      ".......KKK..",
+      "......LKKK..",
+      ".....L......",
+      ".KKKL.......",
+      ".KKK........",
+      ".KKKL.......",
+      ".....L......",
+      "......LKKK..",
+      ".......KKK..",
+      ".......KKK..",
+    ],
+    pal: { K: "currentColor", L: "currentColor" },
+  },
+  speaker: {
+    rows: [
+      "............",
+      "......K.....",
+      ".....KK.....",
+      "....KKK...S.",
+      ".KKKKKK.S.S.",
+      ".KKKKKK.S.S.",
+      ".KK.KKK...S.",
+      ".KK..KK.....",
+      "......K.....",
+      "............",
+      "............",
+      "............",
+    ],
+    pal: { K: "currentColor", S: "currentColor" },
   },
   mail: {
     rows: [
@@ -338,19 +427,23 @@ function initBoot() {
    CLOCK
    ===================================================== */
 function initClock() {
-  const el = document.getElementById("clock");
+  const clockEl = document.getElementById("clock");
+  const dateEl = document.getElementById("menu-date");
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   function tick() {
     const now = new Date();
     let h = now.getHours();
     const m = String(now.getMinutes()).padStart(2, "0");
+    const s = String(now.getSeconds()).padStart(2, "0");
     const ampm = h >= 12 ? "PM" : "AM";
     h = h % 12;
     if (h === 0) h = 12;
-    el.textContent = `${days[now.getDay()]} ${h}:${m} ${ampm}`;
+    clockEl.textContent = `${h}:${m}:${s} ${ampm}`;
+    dateEl.textContent = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
   }
   tick();
-  setInterval(tick, 1000 * 10);
+  setInterval(tick, 1000);
 }
 
 /* =====================================================
@@ -399,7 +492,7 @@ function makeDraggable(handle, target, onStart) {
   });
   handle.addEventListener("pointermove", (e) => {
     if (!dragging) return;
-    const menubarH = 34;
+    const menubarH = 36;
     const maxX = window.innerWidth - 40;
     const maxY = window.innerHeight - 40;
     let x = e.clientX - offX;
@@ -426,8 +519,11 @@ const WindowManager = (() => {
   const titles = {
     about: "About_Me.app",
     resume: "Resume.pdf — Preview",
-    sheraton: "Sheraton_Maldives_Festive.proj",
+    sheraton: "Sheraton_Maldives.proj",
     lapita: "Lapita_DubaiParks.proj",
+    hdubai: "TheHDubai.proj",
+    victor: "VictorMagazine.proj",
+    projects: "Projects — Finder",
     contact: "Mail — New Message",
     trash: "Rejected_Concepts — Trash",
   };
@@ -478,6 +574,7 @@ const WindowManager = (() => {
     if (id === "about") mountGroupSvg("avatar-pixels", GIRL_ROWS.slice(0, 9), GIRL_PAL);
     mountAllIcons();
     wireGalleryLightbox(win);
+    wireHubButtons(win);
 
     const titlebar = win.querySelector(".win-titlebar");
     makeDraggable(titlebar, win, () => focus(win));
@@ -510,6 +607,15 @@ const WindowManager = (() => {
 
   return { open, close };
 })();
+
+function wireHubButtons(scope) {
+  scope.querySelectorAll("[data-open]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      SoundEngine.click();
+      WindowManager.open(btn.dataset.open);
+    });
+  });
+}
 
 function wireGalleryLightbox(scope) {
   const lightbox = document.getElementById("lightbox");
@@ -576,9 +682,40 @@ function initMenuDropdown() {
 
   function toggleSound() {
     const muted = SoundEngine.toggleMute();
-    soundToggle.textContent = muted ? "🔇" : "🔊";
+    soundToggle.classList.toggle("muted", muted);
   }
   soundToggle.addEventListener("click", toggleSound);
+}
+
+/* =====================================================
+   SHARE BUTTON
+   ===================================================== */
+function initShareButton() {
+  const btn = document.getElementById("share-btn");
+  const toast = document.getElementById("toast");
+  let toastTimer = null;
+
+  async function copyLink() {
+    const url = location.href;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch (_) {
+      const temp = document.createElement("textarea");
+      temp.value = url;
+      temp.style.position = "fixed";
+      temp.style.opacity = "0";
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+    }
+    SoundEngine.click();
+    toast.classList.remove("hidden");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.add("hidden"), 1800);
+  }
+
+  btn.addEventListener("click", copyLink);
 }
 
 /* =====================================================
@@ -601,6 +738,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initClouds();
   initIconClicks();
   initMenuDropdown();
+  initShareButton();
   initStickyNote();
   initLightboxClose();
 });
