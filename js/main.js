@@ -1,0 +1,606 @@
+"use strict";
+
+/* =====================================================
+   PIXEL ART DEFINITIONS
+   Each icon is a row-grid of characters mapped to a palette.
+   Rendered as inline SVG <rect> pixels (crisp at any scale).
+   ===================================================== */
+const PIXEL_ART = {
+  badge: {
+    rows: [
+      "................",
+      "......KK........",
+      ".....KRRK.......",
+      ".....KRRK.......",
+      "....KCCCCCK.....",
+      "...KCCCCCCCK....",
+      "...KCHHHHHCK....",
+      "...KCHFFFHCK....",
+      "...KCFFFFFCK....",
+      "...KCFEFEFCK....",
+      "...KCFFFFFCK....",
+      "...KCSSSSSCK....",
+      "...KCSSSSSCK....",
+      "...KKKKKKKKK....",
+      "................",
+      "................",
+    ],
+    pal: { K: "#402b3d", R: "#ff9fc0", C: "#fff2e6", H: "#7a5443", F: "#ffd9c2", E: "#402b3d", S: "#b79cea" },
+  },
+  resume: {
+    rows: [
+      "................",
+      "...KKKKKKKKK....",
+      "...KWWWWWWWK....",
+      "...KWLLLLLWK....",
+      "...KWWWWWWWK....",
+      "...KWLLLLLWK....",
+      "...KWWWWWWWK....",
+      "...KWLLLLLWK....",
+      "...KWWWWWWWK....",
+      "...KWLLLWWWK....",
+      "...KWWWWWWWK....",
+      "...KKKKKKKKK....",
+      "......RR........",
+      ".....RRRR.......",
+      "......RR........",
+      "................",
+    ],
+    pal: { K: "#402b3d", W: "#fff7f2", L: "#dccdf5", R: "#ff9fc0" },
+  },
+  gift: {
+    rows: [
+      "................",
+      "................",
+      "...K........K...",
+      "..KRK..KK..KRK..",
+      "..KRRKKGGKKRRK..",
+      ".KKRRRGGGRRRKK..",
+      ".KRRRRGGGRRRRK..",
+      ".KRRRRGGGRRRRK..",
+      ".KGGGGGGGGGGGK..",
+      ".KRRRRGGGRRRRK..",
+      ".KRRRRGGGRRRRK..",
+      ".KRRRRGGGRRRRK..",
+      ".KRRRRGGGRRRRK..",
+      ".KKKKKKKKKKKKK..",
+      "................",
+      "................",
+    ],
+    pal: { K: "#402b3d", R: "#ff8fa8", G: "#ffe08a" },
+  },
+  map: {
+    rows: [
+      "................",
+      "................",
+      "..KKKKKKKKKKKK..",
+      "..KKKKKKKKKKKK..",
+      "..CCCDDDCCDDCC..",
+      "..CCCDDDCCDDCC..",
+      "..CCCDDDCCTTCC..",
+      "..CCCDDDCTRRCC..",
+      "..CCCDDDTTRRCC..",
+      "..CCTDDDCCDDCC..",
+      "..CTDDDDCCDDCC..",
+      "..CCCDDDCCDDCC..",
+      "..CCCDDDCCDDCC..",
+      "..KKKKKKKKKKKK..",
+      "................",
+      "................",
+    ],
+    pal: { K: "#402b3d", C: "#fff2d6", D: "#e0b96a", T: "#7a5443", R: "#ff5f7a" },
+  },
+  mail: {
+    rows: [
+      "................",
+      "................",
+      "..KKKKKKKKKKKK..",
+      ".KWWWWWWWWWWWWK.",
+      ".KWKK......KKWK.",
+      ".KWWKK....KKWWK.",
+      ".KWWWKK..KKWWWK.",
+      ".KWWWWKKKKWWWWK.",
+      ".KWWWWWRRWWWWWK.",
+      ".KWWWWRRRRWWWWK.",
+      ".KWWWWWRRWWWWWK.",
+      ".KWWWWWWWWWWWWK.",
+      "..KKKKKKKKKKKK..",
+      "................",
+      "................",
+      "................",
+    ],
+    pal: { K: "#402b3d", W: "#fff7f2", R: "#ff6f91" },
+  },
+  trash: {
+    rows: [
+      "................",
+      "................",
+      "....KKKKKKKK....",
+      "...KGGGGGGGGK...",
+      "....KKKKKKKK....",
+      "....KKKKKKKK....",
+      "...KMMMMMMMMK...",
+      "...KMWMWMWMWK...",
+      "...KMWMWMWMWK...",
+      "...KMWMWMWMWK...",
+      "...KMWMWMWMWK...",
+      "...KMWMWMWMWK...",
+      "....KMMMMMMK....",
+      ".....KKKKKK.....",
+      "................",
+      "................",
+    ],
+    pal: { K: "#402b3d", G: "#ff9fc0", M: "#cbb9ea", W: "#e4d7f7" },
+  },
+  heart: {
+    rows: [
+      "................",
+      "................",
+      "................",
+      "..KKKKK..KKKKK..",
+      "..KPWPK..KPPPK..",
+      "..KPPPK..KPWPK..",
+      "..KPPPK..KPPPK..",
+      "..KKKKKKKKKKKK..",
+      "..KPPPPPPPPPPK..",
+      "...KPPPPPPPPK...",
+      "....KPPPPPPK....",
+      ".....KPPPPK.....",
+      "......KPPK......",
+      ".......KK.......",
+      "................",
+      "................",
+    ],
+    pal: { K: "#402b3d", P: "#ff8fa8", W: "#ffe3ee" },
+  },
+  cloud: {
+    rows: [
+      "........................",
+      "........................",
+      "........CCC..CCCC.......",
+      "......CCCCCC.CCCC.......",
+      "......CCCCCCCCCCCC......",
+      "..CCCCCCCCCCCCCCCCCCCC..",
+      "....CCCCCCCCCCCCCCCC....",
+      "..CCCCCCCCCCCCCCCCCCCC..",
+      "........................",
+      "........................",
+    ],
+    pal: { C: "#ffffff" },
+  },
+};
+
+const GIRL_ROWS = [
+  "....HHHHHHHH....",
+  "...HHHHHHHHHH...",
+  "...HHHHHHHHHH...",
+  "...HHFFFFFFHH...",
+  "...HHFFFFFFHH...",
+  "...HHFEFFEFHH...",
+  "...HHFFFFFFHH...",
+  "...HHFMMMMFHH...",
+  "......FFFF......",
+  "...DDDDDDDDDD...",
+  "...DDBBBBBBDD...",
+  "...DDDDDDDDDD...",
+  "...FDDDDDDDDF...",
+  "...FDDDDDDDDF...",
+  "...FDDDDDDDDF...",
+  "....DDDDDDDD....",
+  "....DDDDDDDD....",
+  "......FFFF......",
+  "......FFFF......",
+  "......FFFF......",
+  ".....SSSSSS.....",
+  ".....SSSSSS.....",
+];
+const GIRL_PAL = { H: "#6b4a3d", F: "#ffd9c2", E: "#402b3d", M: "#e8899f", D: "#dccdf5", B: "#ff9fc0", S: "#402b3d" };
+
+function pixelSvgFragment(rows, pal) {
+  const h = rows.length;
+  const w = rows[0].length;
+  let out = "";
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const ch = rows[y][x];
+      if (ch === "." || !pal[ch]) continue;
+      out += `<rect x="${x}" y="${y}" width="1" height="1" fill="${pal[ch]}"/>`;
+    }
+  }
+  return { svg: out, w, h };
+}
+
+function buildIconSvg(name) {
+  const def = PIXEL_ART[name];
+  if (!def) return "";
+  const { svg, w, h } = pixelSvgFragment(def.rows, def.pal);
+  return `<svg viewBox="0 0 ${w} ${h}" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">${svg}</svg>`;
+}
+
+function mountAllIcons() {
+  document.querySelectorAll("[data-icon]").forEach((el) => {
+    el.innerHTML = buildIconSvg(el.dataset.icon);
+  });
+}
+
+function mountGroupSvg(groupId, rows, pal) {
+  const g = document.getElementById(groupId);
+  if (!g) return;
+  const { svg } = pixelSvgFragment(rows, pal);
+  g.innerHTML = svg;
+}
+
+/* =====================================================
+   SOUND ENGINE — synthesized 8-bit blips via Web Audio API
+   ===================================================== */
+const SoundEngine = (() => {
+  let ctx = null;
+  let muted = false;
+
+  function ensureCtx() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      ctx = new AC();
+    }
+    if (ctx.state === "suspended") ctx.resume();
+    return ctx;
+  }
+
+  function blip({ freq = 440, dur = 0.09, type = "square", gain = 0.06, slide = 0 }) {
+    if (muted) return;
+    const c = ensureCtx();
+    const osc = c.createOscillator();
+    const g = c.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, c.currentTime);
+    if (slide) osc.frequency.linearRampToValueAtTime(freq + slide, c.currentTime + dur);
+    g.gain.setValueAtTime(gain, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + dur);
+    osc.connect(g).connect(c.destination);
+    osc.start();
+    osc.stop(c.currentTime + dur + 0.02);
+  }
+
+  return {
+    unlock() { ensureCtx(); },
+    toggleMute() { muted = !muted; return muted; },
+    isMuted() { return muted; },
+    click() { blip({ freq: 520, dur: 0.05, type: "square", gain: 0.05 }); },
+    open() { blip({ freq: 300, dur: 0.12, type: "square", gain: 0.07, slide: 260 }); },
+    close() { blip({ freq: 420, dur: 0.12, type: "square", gain: 0.06, slide: -220 }); },
+    boot() {
+      if (muted) return;
+      const c = ensureCtx();
+      [261.6, 329.6, 392.0, 523.2].forEach((f, i) => {
+        setTimeout(() => blip({ freq: f, dur: 0.16, type: "triangle", gain: 0.08 }), i * 130);
+      });
+    },
+  };
+})();
+
+/* =====================================================
+   BOOT SEQUENCE
+   ===================================================== */
+function initBoot() {
+  mountGroupSvg("boot-logo-pixels", PIXEL_ART.heart.rows, PIXEL_ART.heart.pal);
+
+  const bootScreen = document.getElementById("boot-screen");
+  const desktop = document.getElementById("desktop");
+  const powerBtn = document.getElementById("power-btn");
+  const progressWrap = document.getElementById("boot-progress-wrap");
+  const barFill = document.getElementById("boot-bar-fill");
+  const status = document.getElementById("boot-status");
+
+  const messages = [
+    "loading pixels…",
+    "brewing pastel gradients…",
+    "waking up the pixel girl…",
+    "hanging the sticky note…",
+    "polishing the dock…",
+    "almost there…",
+  ];
+
+  function runBoot() {
+    SoundEngine.unlock();
+    SoundEngine.boot();
+    powerBtn.classList.add("hidden");
+    progressWrap.classList.remove("hidden");
+
+    let pct = 0;
+    let msgIndex = 0;
+    status.textContent = messages[0];
+    const timer = setInterval(() => {
+      pct += 8 + Math.random() * 10;
+      if (pct >= 100) {
+        pct = 100;
+        clearInterval(timer);
+        setTimeout(finishBoot, 350);
+      }
+      barFill.style.width = pct + "%";
+      const nextMsgIndex = Math.min(messages.length - 1, Math.floor((pct / 100) * messages.length));
+      if (nextMsgIndex !== msgIndex) {
+        msgIndex = nextMsgIndex;
+        status.textContent = messages[msgIndex];
+      }
+    }, 220);
+  }
+
+  function finishBoot() {
+    bootScreen.classList.add("fade-out");
+    desktop.classList.remove("hidden");
+    setTimeout(() => bootScreen.classList.add("hidden"), 650);
+  }
+
+  powerBtn.addEventListener("click", runBoot);
+}
+
+/* =====================================================
+   CLOCK
+   ===================================================== */
+function initClock() {
+  const el = document.getElementById("clock");
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  function tick() {
+    const now = new Date();
+    let h = now.getHours();
+    const m = String(now.getMinutes()).padStart(2, "0");
+    const ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    if (h === 0) h = 12;
+    el.textContent = `${days[now.getDay()]} ${h}:${m} ${ampm}`;
+  }
+  tick();
+  setInterval(tick, 1000 * 10);
+}
+
+/* =====================================================
+   FLOATING CLOUDS
+   ===================================================== */
+function initClouds() {
+  const layer = document.getElementById("clouds-layer");
+  const cloudSvg = buildIconSvg("cloud");
+  const configs = [
+    { top: "8%", scale: 1.4, duration: 55, delay: 0, opacity: 0.9 },
+    { top: "18%", scale: 0.9, duration: 40, delay: -12, opacity: 0.75 },
+    { top: "30%", scale: 1.1, duration: 65, delay: -30, opacity: 0.8 },
+    { top: "50%", scale: 0.7, duration: 48, delay: -5, opacity: 0.6 },
+    { top: "12%", scale: 0.6, duration: 35, delay: -20, opacity: 0.55 },
+  ];
+  configs.forEach((cfg) => {
+    const div = document.createElement("div");
+    div.className = "cloud";
+    div.innerHTML = cloudSvg;
+    div.style.top = cfg.top;
+    div.style.width = 24 * 6 * cfg.scale + "px";
+    div.style.height = 10 * 6 * cfg.scale + "px";
+    div.style.opacity = cfg.opacity;
+    div.style.animationDuration = cfg.duration + "s";
+    div.style.animationDelay = cfg.delay + "s";
+    layer.appendChild(div);
+  });
+}
+
+/* =====================================================
+   DRAGGABLE (pointer events — sticky note + windows)
+   ===================================================== */
+function makeDraggable(handle, target, onStart) {
+  let dragging = false;
+  let offX = 0, offY = 0;
+
+  handle.addEventListener("pointerdown", (e) => {
+    if (e.target.closest(".win-dot")) return;
+    dragging = true;
+    if (onStart) onStart();
+    const rect = target.getBoundingClientRect();
+    offX = e.clientX - rect.left;
+    offY = e.clientY - rect.top;
+    handle.setPointerCapture(e.pointerId);
+    target.style.right = "auto";
+  });
+  handle.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    const menubarH = 34;
+    const maxX = window.innerWidth - 40;
+    const maxY = window.innerHeight - 40;
+    let x = e.clientX - offX;
+    let y = e.clientY - offY;
+    x = Math.max(-target.offsetWidth + 60, Math.min(x, maxX));
+    y = Math.max(menubarH, Math.min(y, maxY));
+    target.style.left = x + "px";
+    target.style.top = y + "px";
+  });
+  handle.addEventListener("pointerup", (e) => {
+    dragging = false;
+    try { handle.releasePointerCapture(e.pointerId); } catch (_) {}
+  });
+}
+
+/* =====================================================
+   WINDOW MANAGER
+   ===================================================== */
+const WindowManager = (() => {
+  let zTop = 100;
+  const openWindows = new Map();
+  let cascadeCount = 0;
+
+  const titles = {
+    about: "About_Me.app",
+    resume: "Resume.pdf — Preview",
+    sheraton: "Sheraton_Maldives_Festive.proj",
+    lapita: "Lapita_DubaiParks.proj",
+    contact: "Mail — New Message",
+    trash: "Rejected_Concepts — Trash",
+  };
+
+  function focus(win) {
+    zTop += 1;
+    win.style.zIndex = zTop;
+  }
+
+  function open(id) {
+    if (openWindows.has(id)) {
+      const existing = openWindows.get(id);
+      existing.classList.remove("hidden");
+      focus(existing);
+      return;
+    }
+    const tpl = document.getElementById(`tpl-${id}`);
+    if (!tpl) return;
+
+    const win = document.createElement("div");
+    win.className = "win pixel-corners";
+    win.dataset.winId = id;
+
+    const offset = (cascadeCount % 6) * 26;
+    cascadeCount++;
+    const baseW = Math.min(560, window.innerWidth - 60);
+    win.style.width = baseW + "px";
+    win.style.left = Math.min(window.innerWidth - baseW - 20, 140 + offset) + "px";
+    win.style.top = 60 + offset + "px";
+    win.style.height = Math.min(520, window.innerHeight - 150) + "px";
+
+    win.innerHTML = `
+      <div class="win-titlebar">
+        <button class="win-dot close" title="Close" aria-label="Close"></button>
+        <button class="win-dot min" title="Minimize" aria-label="Minimize"></button>
+        <button class="win-dot max" title="Maximize" aria-label="Maximize"></button>
+        <span class="win-title">${titles[id] || id}</span>
+      </div>
+      <div class="win-body"></div>
+    `;
+    win.querySelector(".win-body").appendChild(tpl.content.cloneNode(true));
+
+    document.getElementById("windows-layer").appendChild(win);
+    openWindows.set(id, win);
+    focus(win);
+    SoundEngine.open();
+
+    if (id === "about") mountGroupSvg("avatar-pixels", GIRL_ROWS.slice(0, 9), GIRL_PAL);
+    mountAllIcons();
+    wireGalleryLightbox(win);
+
+    const titlebar = win.querySelector(".win-titlebar");
+    makeDraggable(titlebar, win, () => focus(win));
+
+    win.addEventListener("pointerdown", () => focus(win));
+
+    win.querySelector(".win-dot.close").addEventListener("click", (e) => {
+      e.stopPropagation();
+      close(id);
+    });
+    win.querySelector(".win-dot.min").addEventListener("click", (e) => {
+      e.stopPropagation();
+      win.classList.add("hidden");
+      SoundEngine.close();
+    });
+    win.querySelector(".win-dot.max").addEventListener("click", (e) => {
+      e.stopPropagation();
+      win.classList.toggle("maximized");
+    });
+    titlebar.addEventListener("dblclick", () => win.classList.toggle("maximized"));
+  }
+
+  function close(id) {
+    const win = openWindows.get(id);
+    if (!win) return;
+    SoundEngine.close();
+    win.remove();
+    openWindows.delete(id);
+  }
+
+  return { open, close };
+})();
+
+function wireGalleryLightbox(scope) {
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+  scope.querySelectorAll(".gallery-item").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      img.src = btn.dataset.full;
+      img.alt = btn.querySelector("img")?.alt || "";
+      lightbox.classList.remove("hidden");
+      SoundEngine.click();
+    });
+  });
+}
+
+function initLightboxClose() {
+  const lightbox = document.getElementById("lightbox");
+  document.getElementById("lightbox-close").addEventListener("click", () => lightbox.classList.add("hidden"));
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) lightbox.classList.add("hidden");
+  });
+}
+
+/* =====================================================
+   ICON / DOCK CLICK WIRING
+   ===================================================== */
+function initIconClicks() {
+  document.querySelectorAll(".desktop-icon, .dock-icon").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      SoundEngine.click();
+      if (btn.classList.contains("dock-icon")) {
+        btn.classList.remove("bounce");
+        void btn.offsetWidth;
+        btn.classList.add("bounce");
+      }
+      WindowManager.open(btn.dataset.window);
+    });
+  });
+}
+
+/* =====================================================
+   MENU BAR DROPDOWN
+   ===================================================== */
+function initMenuDropdown() {
+  const btn = document.getElementById("logo-menu-btn");
+  const dropdown = document.getElementById("logo-dropdown");
+  const soundToggle = document.getElementById("sound-toggle");
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const willShow = dropdown.classList.contains("hidden");
+    dropdown.classList.toggle("hidden");
+    btn.setAttribute("aria-expanded", String(willShow));
+  });
+  document.addEventListener("click", () => dropdown.classList.add("hidden"));
+
+  dropdown.querySelectorAll("[data-action]").forEach((item) => {
+    item.addEventListener("click", () => {
+      const action = item.dataset.action;
+      if (action === "about") WindowManager.open("about");
+      if (action === "sound") toggleSound();
+      if (action === "reboot") location.reload();
+    });
+  });
+
+  function toggleSound() {
+    const muted = SoundEngine.toggleMute();
+    soundToggle.textContent = muted ? "🔇" : "🔊";
+  }
+  soundToggle.addEventListener("click", toggleSound);
+}
+
+/* =====================================================
+   STICKY NOTE DRAG
+   ===================================================== */
+function initStickyNote() {
+  const note = document.getElementById("sticky-note");
+  note.style.position = "absolute";
+  makeDraggable(note, note);
+}
+
+/* =====================================================
+   INIT
+   ===================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  mountAllIcons();
+  mountGroupSvg("pixel-girl-pixels", GIRL_ROWS, GIRL_PAL);
+  initBoot();
+  initClock();
+  initClouds();
+  initIconClicks();
+  initMenuDropdown();
+  initStickyNote();
+  initLightboxClose();
+});

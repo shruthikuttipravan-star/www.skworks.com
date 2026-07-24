@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Shruthi Kuttipravan — Marketing Executive | Pixel OS Portfolio</title>
+<meta name="description" content="Shruthi Kuttipravan — Marketing Executive. A retro pixel-art macOS-style interactive portfolio.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23f6c9d8'/%3E%3Crect x='3' y='3' width='10' height='10' fill='%23fff3f8'/%3E%3Crect x='5' y='6' width='2' height='2' fill='%23543a52'/%3E%3Crect x='9' y='6' width='2' height='2' fill='%23543a52'/%3E%3Crect x='5' y='10' width='6' height='1' fill='%23543a52'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ BOOT SCREEN ============ -->
+<div id="boot-screen">
+  <div class="boot-inner">
+    <div class="boot-logo" aria-hidden="true">
+      <svg viewBox="0 0 32 32" class="boot-logo-svg"><g id="boot-logo-pixels"></g></svg>
+    </div>
+    <div class="boot-title">SK&nbsp;OS</div>
+    <div class="boot-sub">shruthi kuttipravan · marketing executive</div>
+
+    <button id="power-btn" class="pixel-btn pixel-corners">▸ POWER ON</button>
+
+    <div id="boot-progress-wrap" class="hidden">
+      <div class="boot-bar pixel-corners"><div id="boot-bar-fill"></div></div>
+      <div id="boot-status">loading pixels…</div>
+    </div>
+  </div>
+  <div class="boot-scanlines" aria-hidden="true"></div>
+</div>
+
+<!-- ============ DESKTOP ============ -->
+<div id="desktop" class="hidden">
+
+  <!-- floating clouds -->
+  <div id="clouds-layer" aria-hidden="true"></div>
+
+  <!-- top menu bar -->
+  <header id="menubar">
+    <div class="menubar-left">
+      <button id="logo-menu-btn" class="menu-item logo-item" aria-haspopup="true" aria-expanded="false">
+        <svg class="menu-face" viewBox="0 0 8 8" width="16" height="16" shape-rendering="crispEdges">
+          <rect width="8" height="8" fill="#ff8fb3"/>
+          <rect x="2" y="3" width="1" height="1" fill="#402b3d"/>
+          <rect x="5" y="3" width="1" height="1" fill="#402b3d"/>
+          <rect x="3" y="5" width="2" height="1" fill="#402b3d"/>
+        </svg>
+      </button>
+      <div id="logo-dropdown" class="dropdown pixel-corners hidden">
+        <button data-action="about" class="dropdown-item">About This Portfolio</button>
+        <button data-action="reboot" class="dropdown-item">Restart Boot Sequence…</button>
+        <button data-action="sound" class="dropdown-item">Toggle Sound FX</button>
+        <div class="dropdown-sep"></div>
+        <a href="mailto:shruthi.kuttipravan@gmail.com" class="dropdown-item">Email Shruthi</a>
+      </div>
+      <span class="menu-item menu-name">Shruthi Kuttipravan</span>
+      <span class="menu-item menu-tag hide-sm">Marketing Executive</span>
+    </div>
+    <div class="menubar-right">
+      <button id="sound-toggle" class="menu-item icon-btn" title="Toggle sound" aria-label="Toggle sound">🔊</button>
+      <span id="clock" class="menu-item clock">00:00 AM</span>
+    </div>
+  </header>
+
+  <!-- sticky note -->
+  <div id="sticky-note" class="pixel-corners">
+    <div class="sticky-pin"></div>
+    <p>turning brand briefs into 8-bit worthy campaigns ✦ luxury hospitality marketing, Maldives → Dubai → beyond</p>
+  </div>
+
+  <!-- desktop icons -->
+  <div id="icons-layer">
+    <button class="desktop-icon" data-window="about" data-sound="click">
+      <span class="icon-art" data-icon="badge"></span>
+      <span class="icon-label">About_Me</span>
+    </button>
+    <button class="desktop-icon" data-window="resume" data-sound="click">
+      <span class="icon-art" data-icon="resume"></span>
+      <span class="icon-label">Resume.pdf</span>
+    </button>
+    <button class="desktop-icon" data-window="sheraton" data-sound="click">
+      <span class="icon-art" data-icon="gift"></span>
+      <span class="icon-label">Sheraton_Festive</span>
+    </button>
+    <button class="desktop-icon" data-window="lapita" data-sound="click">
+      <span class="icon-art" data-icon="map"></span>
+      <span class="icon-label">Lapita_Collaterals</span>
+    </button>
+    <button class="desktop-icon" data-window="contact" data-sound="click">
+      <span class="icon-art" data-icon="mail"></span>
+      <span class="icon-label">Contact_Me</span>
+    </button>
+    <button class="desktop-icon" id="trash-icon" data-window="trash" data-sound="click">
+      <span class="icon-art" data-icon="trash"></span>
+      <span class="icon-label">Rejected_Concepts</span>
+    </button>
+  </div>
+
+  <!-- pixel girl character above the dock -->
+  <div id="character-layer" aria-hidden="true">
+    <svg id="pixel-girl" viewBox="0 0 16 22" shape-rendering="crispEdges"><g id="pixel-girl-pixels"></g></svg>
+  </div>
+
+  <!-- windows render here -->
+  <div id="windows-layer"></div>
+
+  <!-- dock -->
+  <nav id="dock" class="pixel-corners">
+    <button class="dock-icon" data-window="about" data-sound="click" title="About Me">
+      <span class="icon-art" data-icon="badge"></span>
+    </button>
+    <button class="dock-icon" data-window="resume" data-sound="click" title="Resume">
+      <span class="icon-art" data-icon="resume"></span>
+    </button>
+    <button class="dock-icon" data-window="sheraton" data-sound="click" title="Sheraton Maldives — Festive">
+      <span class="icon-art" data-icon="gift"></span>
+    </button>
+    <button class="dock-icon" data-window="lapita" data-sound="click" title="Lapita Dubai Parks &amp; Resorts">
+      <span class="icon-art" data-icon="map"></span>
+    </button>
+    <button class="dock-icon" data-window="contact" data-sound="click" title="Contact">
+      <span class="icon-art" data-icon="mail"></span>
+    </button>
+    <span class="dock-sep"></span>
+    <button class="dock-icon" data-window="trash" data-sound="click" title="Rejected Concepts">
+      <span class="icon-art" data-icon="trash"></span>
+    </button>
+  </nav>
+
+</div>
+
+<!-- ============ WINDOW CONTENT TEMPLATES ============ -->
+
+<template id="tpl-about">
+  <div class="win-content about-content">
+    <div class="about-head">
+      <svg class="about-avatar" viewBox="0 0 16 16" shape-rendering="crispEdges"><g id="avatar-pixels"></g></svg>
+      <div>
+        <h2>Shruthi Kuttipravan</h2>
+        <p class="about-role">Marketing Executive · Luxury Hospitality</p>
+        <p class="about-loc">📍 Bengaluru, Karnataka · previously Maldives &amp; UAE</p>
+      </div>
+    </div>
+
+    <p class="about-bio">Results-driven Marketing &amp; Communications professional with 2+ years of luxury hospitality experience across the Maldives and UAE. I lead integrated campaigns, KOL &amp; media FAM trips, on-brand visual storytelling, and digital platforms for internationally recognized hotel brands — ready to take full ownership of marketing &amp; PR strategy on property.</p>
+
+    <h3>Core Competencies</h3>
+    <div class="chip-row">
+      <span class="chip">Campaign &amp; Content</span>
+      <span class="chip">PR &amp; Communications</span>
+      <span class="chip">Brand Consistency</span>
+      <span class="chip">Asset Management</span>
+      <span class="chip">Data-driven Decisions</span>
+    </div>
+
+    <h3>Tools</h3>
+    <div class="chip-row">
+      <span class="chip chip-tool">Photoshop</span>
+      <span class="chip chip-tool">InDesign</span>
+      <span class="chip chip-tool">Illustrator</span>
+      <span class="chip chip-tool">Premiere Pro</span>
+      <span class="chip chip-tool">Canva</span>
+      <span class="chip chip-tool">Meta Business Suite</span>
+      <span class="chip chip-tool">WordPress</span>
+      <span class="chip chip-tool">Mailchimp</span>
+      <span class="chip chip-tool">Marriott MDS</span>
+    </div>
+
+    <h3>Experience</h3>
+    <ul class="timeline">
+      <li>
+        <span class="tl-dot"></span>
+        <div><strong>Marketing Executive</strong> — Sheraton Maldives Full Moon Resort &amp; Spa
+        <span class="tl-date">Apr 2025 – Apr 2026</span>
+        <p>Drove 8% social engagement growth, coordinated 20 media FAM trips + 8 KOL visits earning 100+ press placements, executed 3 integrated campaigns (+10% booking inquiries).</p></div>
+      </li>
+      <li>
+        <span class="tl-dot"></span>
+        <div><strong>Sales &amp; Marketing Intern</strong> — Lapita Dubai Parks and Resorts, Autograph Collection
+        <span class="tl-date">Mar 2024 – Mar 2025</span>
+        <p>Grew social following 10%, ran 2 integrated campaigns reaching 70,000+, built sales proposals &amp; branded KOL collateral.</p></div>
+      </li>
+      <li>
+        <span class="tl-dot"></span>
+        <div><strong>Marketing Intern</strong> — The H Dubai
+        <span class="tl-date">Sep 2023 – Mar 2024</span>
+        <p>Crafted 30+ creative copy pieces, improved website performance 5% via CMS &amp; analytics upkeep, managed CRM reporting.</p></div>
+      </li>
+    </ul>
+
+    <h3>Education</h3>
+    <p class="edu-line">🎓 Amity University Dubai — Bachelor of Hotel Management <span class="tl-date">2018 – 2022</span></p>
+
+    <h3>Certifications</h3>
+    <ul class="cert-list">
+      <li>Social Media Marketing — Institute of Hospitality</li>
+      <li>Writing 101 for Hotel Business — Institute of Hospitality</li>
+      <li>Fundamentals of Digital Marketing — Google</li>
+      <li>Brand &amp; Marketing Integration — LinkedIn Learning</li>
+      <li>Social Media Marketing: Strategy &amp; Optimization — LinkedIn Learning</li>
+    </ul>
+
+    <h3>Languages</h3>
+    <div class="chip-row">
+      <span class="chip">English</span>
+      <span class="chip">Malayalam (Intermediate)</span>
+      <span class="chip">Hindi (Basic)</span>
+      <span class="chip">Arabic (Basic)</span>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-resume">
+  <div class="win-content resume-content">
+    <div class="resume-stats">
+      <div class="stat pixel-corners"><strong>2+ yrs</strong><span>luxury hospitality marketing</span></div>
+      <div class="stat pixel-corners"><strong>20</strong><span>media FAM trips coordinated</span></div>
+      <div class="stat pixel-corners"><strong>100+</strong><span>earned media placements</span></div>
+      <div class="stat pixel-corners"><strong>8%</strong><span>social engagement growth</span></div>
+    </div>
+    <a class="pixel-btn pixel-corners download-btn" href="assets/resume/Shruthi_Kuttipravan_Resume.pdf" download>⬇ Download Resume PDF</a>
+    <div class="resume-pages">
+      <img src="assets/screenshots/resume-1.jpg" alt="Resume page 1 — Shruthi Kuttipravan, Marketing Executive" loading="lazy">
+      <img src="assets/screenshots/resume-2.jpg" alt="Resume page 2 — experience continued, certifications and portfolio" loading="lazy">
+    </div>
+  </div>
+</template>
+
+<template id="tpl-sheraton">
+  <div class="win-content project-content">
+    <p class="project-role">Marketing Executive · Sheraton Maldives Full Moon Resort &amp; Spa · Apr 2025 – present</p>
+    <p class="project-blurb">Concept, copy and design for the resort's festive season: General Manager greeting cards, the full Christmas Day itinerary, and a run of activity flyers — produced end-to-end in Adobe Creative Suite to strict Marriott brand guidelines.</p>
+    <div class="chip-row">
+      <span class="chip">Print Collateral</span>
+      <span class="chip">Campaign Design</span>
+      <span class="chip">Brand Guidelines</span>
+      <span class="chip">Guest Communications</span>
+    </div>
+    <div class="gallery">
+      <button class="gallery-item pixel-corners" data-full="assets/screenshots/sheraton-greeting-1.jpg"><img src="assets/screenshots/sheraton-greeting-1.jpg" alt="Sheraton Maldives festive greeting card, GM signature" loading="lazy"><span>Festive Greeting — GM Card</span></button>
+      <button class="gallery-item pixel-corners" data-full="assets/screenshots/sheraton-greeting-2.jpg"><img src="assets/screenshots/sheraton-greeting-2.jpg" alt="Sheraton Maldives festive greeting card, resort signature" loading="lazy"><span>Festive Greeting — Resort Card</span></button>
+      <button class="gallery-item pixel-corners" data-full="assets/screenshots/sheraton-christmas-itinerary.jpg"><img src="assets/screenshots/sheraton-christmas-itinerary.jpg" alt="Celebrate The Festivities — Christmas Day itinerary" loading="lazy"><span>Christmas Day Itinerary</span></button>
+      <button class="gallery-item pixel-corners" data-full="assets/screenshots/sheraton-beach-challenge.jpg"><img src="assets/screenshots/sheraton-beach-challenge.jpg" alt="Family Beach Fun Challenge flyer" loading="lazy"><span>Family Beach Fun Challenge</span></button>
+      <button class="gallery-item pixel-corners" data-full="assets/screenshots/sheraton-coffee-scrub.jpg"><img src="assets/screenshots/sheraton-coffee-scrub.jpg" alt="DIY Coffee Scrub Making activity flyer" loading="lazy"><span>DIY Coffee Scrub Making</span></button>
+      <button class="gallery-item pixel-corners" data-full="assets/screenshots/sheraton-orthodox-dinner.jpg"><img src="assets/screenshots/sheraton-orthodox-dinner.jpg" alt="Orthodox Beach Buffet Dinner flyer" loading="lazy"><span>Orthodox Beach Buffet Dinner</span></button>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-lapita">
+  <div class="win-content project-content">
+    <p class="project-role">Sales &amp; Marketing Intern · Lapita Dubai Parks and Resorts, Autograph Collection · Mar 2024 – Mar 2025</p>
+    <p class="project-blurb">Branded sales &amp; guest-facing collateral across the Dubai Parks and Resorts ecosystem — F&amp;B promotions, allergen safety signage, and a park information guide spanning LEGOLAND®, LEGOLAND® Water Park, Motiongate™, Real Madrid World and Riverland™.</p>
+    <div class="chip-row">
+      <span class="chip">Sales Tools</span>
+      <span class="chip">Signage Design</span>
+      <span class="chip">F&amp;B Menus</span>
+      <span class="chip">Theme Park Collateral</span>
+    </div>
+    <div class="gallery">
+      <button class="gallery-item pixel-corners" data-full="assets/screenshots/lapita-cocktail-menu.jpg"><img src="assets/screenshots/lapita-cocktail-menu.jpg" alt="Kalea Cocktail Hour menu design" loading="lazy"><span>Kalea — Cocktail Hour Menu</span></button>
+      <button class="gallery-item pixel-corners" data-full="assets/screenshots/lapita-food-allergens.jpg"><img src="assets/screenshots/lapita-food-allergens.jpg" alt="Lapita food allergens signage" loading="lazy"><span>Food Allergens Signage</span></button>
+      <button class="gallery-item pixel-corners" data-full="assets/screenshots/lapita-park-timings.jpg"><img src="assets/screenshots/lapita-park-timings.jpg" alt="Dubai Parks and Resorts park timings guide" loading="lazy"><span>Park Timings Guide</span></button>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-contact">
+  <div class="win-content contact-content">
+    <p class="mail-field"><strong>To:</strong> shruthi.kuttipravan@gmail.com</p>
+    <p class="mail-field"><strong>Subject:</strong> Let's work together</p>
+    <div class="mail-body pixel-corners">
+      <p>Hi Shruthi,</p>
+      <p>&nbsp;</p>
+      <p>I'd love to chat about—</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+    </div>
+    <div class="contact-details">
+      <p>📧 <a href="mailto:shruthi.kuttipravan@gmail.com">shruthi.kuttipravan@gmail.com</a></p>
+      <p>📞 (91) 7736804769</p>
+      <p>📍 Bengaluru, Karnataka</p>
+    </div>
+    <a class="pixel-btn pixel-corners" href="mailto:shruthi.kuttipravan@gmail.com?subject=Let%27s%20work%20together">✉ Send Email</a>
+  </div>
+</template>
+
+<template id="tpl-trash">
+  <div class="win-content trash-content">
+    <p class="trash-intro">// concepts that didn't make it to production</p>
+    <ul class="trash-list">
+      <li><span class="trash-name">concept_v1_all-comic-sans.psd</span><span class="trash-tag">REJECTED</span></li>
+      <li><span class="trash-name">portfolio-but-its-a-spreadsheet.xlsx</span><span class="trash-tag">REJECTED — too honest</span></li>
+      <li><span class="trash-name">just-a-linkedin-pdf.pdf</span><span class="trash-tag">REJECTED — boring</span></li>
+      <li><span class="trash-name">hamster-wheel-loading-animation.gif</span><span class="trash-tag">REJECTED — too real</span></li>
+      <li><span class="trash-name">resume-as-a-rap.mp3</span><span class="trash-tag">REJECTED — legal said no</span></li>
+      <li><span class="trash-name">clippy_cameo_final.psd</span><span class="trash-tag">REJECTED — he wouldn't leave</span></li>
+      <li><span class="trash-name">final_FINAL_v9_pixelOS.html</span><span class="trash-tag trash-accepted">SHIPPED ✓</span></li>
+    </ul>
+    <p class="trash-outro">you found the easter egg. hi. 👋</p>
+  </div>
+</template>
+
+<!-- lightbox -->
+<div id="lightbox" class="hidden">
+  <button id="lightbox-close" aria-label="Close preview">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
