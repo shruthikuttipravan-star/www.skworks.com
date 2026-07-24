@@ -6,132 +6,6 @@
    Rendered as inline SVG <rect> pixels (crisp at any scale).
    ===================================================== */
 const PIXEL_ART = {
-  badge: {
-    rows: [
-      "................",
-      "......KK........",
-      ".....KRRK.......",
-      ".....KRRK.......",
-      "....KCCCCCK.....",
-      "...KCCCCCCCK....",
-      "...KCHHHHHCK....",
-      "...KCHFFFHCK....",
-      "...KCFFFFFCK....",
-      "...KCFEFEFCK....",
-      "...KCFFFFFCK....",
-      "...KCSSSSSCK....",
-      "...KCSSSSSCK....",
-      "...KKKKKKKKK....",
-      "................",
-      "................",
-    ],
-    pal: { K: "#402b3d", R: "#ff9fc0", C: "#fff2e6", H: "#7a5443", F: "#ffd9c2", E: "#402b3d", S: "#b79cea" },
-  },
-  resume: {
-    rows: [
-      "................",
-      "...KKKKKKKKK....",
-      "...KWWWWWWWK....",
-      "...KWLLLLLWK....",
-      "...KWWWWWWWK....",
-      "...KWLLLLLWK....",
-      "...KWWWWWWWK....",
-      "...KWLLLLLWK....",
-      "...KWWWWWWWK....",
-      "...KWLLLWWWK....",
-      "...KWWWWWWWK....",
-      "...KKKKKKKKK....",
-      "......RR........",
-      ".....RRRR.......",
-      "......RR........",
-      "................",
-    ],
-    pal: { K: "#402b3d", W: "#fff7f2", L: "#dccdf5", R: "#ff9fc0" },
-  },
-  megaphone: {
-    rows: [
-      "................",
-      "................",
-      "..........KKK...",
-      "........KKGGK.SS",
-      "......KKGGGGK...",
-      "....KKGGGGGGK...",
-      ".KKKGGGGGGGGK...",
-      ".KGGGGGGGGGGK...",
-      ".KGGGGGGGGGGK..S",
-      ".KKKGGGGGGGGK...",
-      "....KKGGGGGGK...",
-      "......KKGGGGK...",
-      "........KKGGK...",
-      "..........KKK.SS",
-      "................",
-      "................",
-    ],
-    pal: { K: "#402b3d", G: "#ff8fa8", S: "#ffd76a" },
-  },
-  newspaper: {
-    rows: [
-      "................",
-      "................",
-      ".KKKKKKKKKKKKKK.",
-      ".KKKKKKKKKKKKKK.",
-      ".KKKKKKKKKKKKKK.",
-      ".KWWWWWWWWWWWWK.",
-      ".KWKKKKKWWWWWWK.",
-      ".KWKKKKKKKWWWWK.",
-      ".KWWWWWWWWWWWWK.",
-      ".KWDDDDWWDDDDDK.",
-      ".KWDDDDDWDDDDDK.",
-      ".KWDDDWWWDDDDWK.",
-      ".KWWWWWWWWWWWWK.",
-      ".KKKKKKKKKKKKKK.",
-      "................",
-      "................",
-    ],
-    pal: { K: "#402b3d", W: "#fff7f2", D: "#dccdf5" },
-  },
-  pager: {
-    rows: [
-      "................",
-      "................",
-      ".....KKKKKK.....",
-      "....KGGGGGGK....",
-      "...KGGGGGGGGK...",
-      "..KKGKKKKKKGKK..",
-      "..KGKWWWWWWKGK..",
-      "..KGKWKPPKWKGK..",
-      "..KGKWPPPPWKGK..",
-      "..KGKWKPPKWKGK..",
-      "..KGKWWWWWWKGK..",
-      "..KGKKKKKKKKGK..",
-      "..KG.O....O.GK..",
-      "..KGG......GGK..",
-      "...KGGGGGGGGK...",
-      "....KKKKKKKK....",
-    ],
-    pal: { K: "#402b3d", G: "#a8e6c1", W: "#fff7f2", P: "#ff6f91", O: "#ff9fc0" },
-  },
-  calendar: {
-    rows: [
-      "................",
-      "................",
-      "...KK....KK.....",
-      "...KK....KK.....",
-      "..KKKKKKKKKKK...",
-      ".KWWWWWWWWWWWK..",
-      ".KWKKKKKKKKKWK..",
-      ".KWKRRKKKKKKWK..",
-      ".KWWWWWWWWWWWK..",
-      ".KWKKWKKWKKKWK..",
-      ".KWKKWKKWKKKWK..",
-      ".KWWWWWWWWWWWK..",
-      ".KWKKWKKWKKKWK..",
-      ".KWWWWWWWWWWWK..",
-      ".KKKKKKKKKKKKK..",
-      "................",
-    ],
-    pal: { K: "#402b3d", W: "#fff7f2", R: "#ff6f91" },
-  },
   "logo-cloud": {
     rows: [
       "................",
@@ -179,48 +53,6 @@ const PIXEL_ART = {
     ],
     pal: { K: "currentColor", S: "currentColor" },
   },
-  mail: {
-    rows: [
-      "................",
-      "................",
-      "..KKKKKKKKKKKK..",
-      ".KWWWWWWWWWWWWK.",
-      ".KWKK......KKWK.",
-      ".KWWKK....KKWWK.",
-      ".KWWWKK..KKWWWK.",
-      ".KWWWWKKKKWWWWK.",
-      ".KWWWWWRRWWWWWK.",
-      ".KWWWWRRRRWWWWK.",
-      ".KWWWWWRRWWWWWK.",
-      ".KWWWWWWWWWWWWK.",
-      "..KKKKKKKKKKKK..",
-      "................",
-      "................",
-      "................",
-    ],
-    pal: { K: "#402b3d", W: "#fff7f2", R: "#ff6f91" },
-  },
-  trash: {
-    rows: [
-      "................",
-      "................",
-      "....KKKKKKKK....",
-      "...KGGGGGGGGK...",
-      "....KKKKKKKK....",
-      "....KKKKKKKK....",
-      "...KMMMMMMMMK...",
-      "...KMWMWMWMWK...",
-      "...KMWMWMWMWK...",
-      "...KMWMWMWMWK...",
-      "...KMWMWMWMWK...",
-      "...KMWMWMWMWK...",
-      "....KMMMMMMK....",
-      ".....KKKKKK.....",
-      "................",
-      "................",
-    ],
-    pal: { K: "#402b3d", G: "#ff9fc0", M: "#cbb9ea", W: "#e4d7f7" },
-  },
   heart: {
     rows: [
       "................",
@@ -258,32 +90,6 @@ const PIXEL_ART = {
     pal: { C: "#ffffff" },
   },
 };
-
-const GIRL_ROWS = [
-  "....HHHHHHHH....",
-  "...HHHHHHHHHH...",
-  "...HHHHHHHHHH...",
-  "...HHFFFFFFHH...",
-  "...HHFFFFFFHH...",
-  "...HHFEFFEFHH...",
-  "...HHFFFFFFHH...",
-  "...HHFMMMMFHH...",
-  "......FFFF......",
-  "...DDDDDDDDDD...",
-  "...DDBBBBBBDD...",
-  "...DDDDDDDDDD...",
-  "...FDDDDDDDDF...",
-  "...FDDDDDDDDF...",
-  "...FDDDDDDDDF...",
-  "....DDDDDDDD....",
-  "....DDDDDDDD....",
-  "......FFFF......",
-  "......FFFF......",
-  "......FFFF......",
-  ".....SSSSSS.....",
-  ".....SSSSSS.....",
-];
-const GIRL_PAL = { H: "#6b4a3d", F: "#ffd9c2", E: "#402b3d", M: "#e8899f", D: "#dccdf5", B: "#ff9fc0", S: "#402b3d" };
 
 function pixelSvgFragment(rows, pal) {
   const h = rows.length;
@@ -571,7 +377,6 @@ const WindowManager = (() => {
     focus(win);
     SoundEngine.open();
 
-    if (id === "about") mountGroupSvg("avatar-pixels", GIRL_ROWS.slice(0, 9), GIRL_PAL);
     mountAllIcons();
     wireGalleryLightbox(win);
     wireHubButtons(win);
@@ -732,7 +537,6 @@ function initStickyNote() {
    ===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   mountAllIcons();
-  mountGroupSvg("pixel-girl-pixels", GIRL_ROWS, GIRL_PAL);
   initBoot();
   initClock();
   initClouds();

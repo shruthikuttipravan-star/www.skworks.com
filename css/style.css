@@ -324,7 +324,7 @@ svg { display: block; }
 .desktop-icon:hover .icon-label,
 .desktop-icon:focus .icon-label { background: rgba(183, 156, 234, 0.55); }
 .desktop-icon:active .icon-art { transform: translateY(2px); }
-.icon-art { width: 40px; height: 40px; display: block; filter: drop-shadow(2px 2px 0 var(--shadow)); }
+.icon-art { width: 40px; height: 40px; display: block; object-fit: contain; filter: drop-shadow(2px 2px 0 var(--shadow)); }
 .icon-art svg { width: 100%; height: 100%; }
 .icon-label {
   font-size: 8px;
@@ -346,9 +346,9 @@ svg { display: block; }
   pointer-events: none;
 }
 #pixel-girl {
-  width: 116px;
-  height: 160px;
-  image-rendering: pixelated;
+  height: 190px;
+  width: auto;
+  display: block;
   animation: girlBob 2.4s ease-in-out infinite;
   filter: drop-shadow(4px 4px 0 var(--shadow));
 }
@@ -445,7 +445,7 @@ svg { display: block; }
   55% { transform: translateY(0); }
   75% { transform: translateY(-6px); }
 }
-.dock-icon .icon-art { width: 100%; height: 100%; filter: drop-shadow(1px 2px 0 var(--shadow)); }
+.dock-icon .icon-art { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(1px 2px 0 var(--shadow)); }
 .dock-tooltip {
   position: absolute;
   top: -34px; left: 50%;
@@ -471,7 +471,7 @@ svg { display: block; }
 .win-content a { color: #d1477e; }
 
 .about-head { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
-.about-avatar { width: 56px; height: 56px; image-rendering: pixelated; flex-shrink: 0; }
+.about-avatar { height: 84px; width: auto; object-fit: contain; flex-shrink: 0; filter: drop-shadow(2px 2px 0 var(--shadow)); }
 .about-role { color: var(--ink-soft); font-size: 9px; margin: 4px 0; }
 .about-loc { font-size: 8px; color: var(--ink-soft); margin: 0; }
 .about-bio { font-size: 9.5px; }
@@ -623,7 +623,7 @@ svg { display: block; }
   .desktop-icon { width: 78px; }
   #sticky-note { width: 150px; top: 60px; right: 4%; font-size: 8px; }
   #character-layer { right: 6%; bottom: 80px; }
-  #pixel-girl { width: 76px; height: 105px; }
+  #pixel-girl { height: 130px; }
   .win { min-width: 88vw !important; max-width: 92vw !important; left: 4vw !important; }
   .win.maximized { left: 2vw !important; width: 96vw !important; }
   #dock { gap: 6px; padding: 8px 10px; }
