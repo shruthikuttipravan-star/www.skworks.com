@@ -353,13 +353,20 @@ const WindowManager = (() => {
     win.className = "win pixel-corners";
     win.dataset.winId = id;
 
-    const offset = (cascadeCount % 6) * 26;
-    cascadeCount++;
-    const baseW = Math.min(560, window.innerWidth - 60);
-    win.style.width = baseW + "px";
-    win.style.left = Math.min(window.innerWidth - baseW - 20, 140 + offset) + "px";
-    win.style.top = 60 + offset + "px";
-    win.style.height = Math.min(520, window.innerHeight - 150) + "px";
+    if (window.innerWidth <= 720) {
+      win.style.left = "4vw";
+      win.style.top = "44px";
+      win.style.width = "92vw";
+      win.style.height = "calc(100vh - 132px)";
+    } else {
+      const offset = (cascadeCount % 6) * 26;
+      cascadeCount++;
+      const baseW = Math.min(560, window.innerWidth - 60);
+      win.style.width = baseW + "px";
+      win.style.left = Math.min(window.innerWidth - baseW - 20, 140 + offset) + "px";
+      win.style.top = 60 + offset + "px";
+      win.style.height = Math.min(520, window.innerHeight - 150) + "px";
+    }
 
     win.innerHTML = `
       <div class="win-titlebar">
@@ -392,8 +399,11 @@ const WindowManager = (() => {
     });
     win.querySelector(".win-dot.min").addEventListener("click", (e) => {
       e.stopPropagation();
-      win.classList.add("hidden");
       SoundEngine.close();
+      animateOut(win, () => {
+        win.classList.add("hidden");
+        win.classList.remove("closing");
+      });
     });
     win.querySelector(".win-dot.max").addEventListener("click", (e) => {
       e.stopPropagation();
@@ -402,12 +412,26 @@ const WindowManager = (() => {
     titlebar.addEventListener("dblclick", () => win.classList.toggle("maximized"));
   }
 
+  function animateOut(win, done) {
+    win.classList.add("closing");
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      done();
+    };
+    win.addEventListener("animationend", finish, { once: true });
+    setTimeout(finish, 220);
+  }
+
   function close(id) {
     const win = openWindows.get(id);
     if (!win) return;
     SoundEngine.close();
-    win.remove();
-    openWindows.delete(id);
+    animateOut(win, () => {
+      win.remove();
+      openWindows.delete(id);
+    });
   }
 
   return { open, close };
