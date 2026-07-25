@@ -527,6 +527,21 @@ svg { display: block; }
 .gallery-item span { display: block; font-size: 7.5px; padding: 8px 6px; text-align: center; line-height: 1.5; }
 .gallery-item:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--shadow); }
 
+.project-video {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 480 / 854;
+  object-fit: cover;
+  background: #000;
+  border: 3px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--shadow);
+  margin-top: 4px;
+}
+
+.chip-link { text-decoration: none; color: var(--ink); cursor: pointer; transition: background 0.1s ease, color 0.1s ease; }
+.chip-link:hover { background: var(--pink-deep); color: #fff; }
+
 .feature-block {
   background: var(--cream);
   border: 3px solid var(--ink);
