@@ -497,6 +497,12 @@ svg { display: block; }
 .cert-list { padding-left: 18px; font-size: 9px; margin: 0 0 10px; }
 .cert-list li { margin-bottom: 6px; }
 
+.link-list { list-style: none; padding: 0; margin: 0 0 10px; }
+.link-list li { position: relative; padding-left: 22px; margin-bottom: 9px; font-size: 8.5px; line-height: 1.6; }
+.link-list li::before { content: ">>"; position: absolute; left: 0; top: 0; color: var(--ink-soft); }
+.link-list a { color: #d1477e; text-decoration: none; }
+.link-list a:hover { text-decoration: underline; }
+
 .resume-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
 .stat {
   background: var(--lavender);
