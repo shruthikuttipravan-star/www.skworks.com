@@ -53,26 +53,22 @@ const PIXEL_ART = {
     ],
     pal: { K: "currentColor", S: "currentColor" },
   },
-  heart: {
+  "boot-cloud": {
     rows: [
       "................",
-      "................",
-      "................",
-      "..KKKKK..KKKKK..",
-      "..KPWPK..KPPPK..",
-      "..KPPPK..KPWPK..",
-      "..KPPPK..KPPPK..",
-      "..KKKKKKKKKKKK..",
-      "..KPPPPPPPPPPK..",
-      "...KPPPPPPPPK...",
-      "....KPPPPPPK....",
-      ".....KPPPPK.....",
-      "......KPPK......",
-      ".......KK.......",
+      "......CCCC......",
+      "....CCCCCCCC....",
+      "..CCCCCCCCCCCC..",
+      ".CCCCCCCCCCCCCC.",
+      "CCCCCCCCCCCCCCCC",
+      "CCCCCKCCCCKCCCCC",
+      "CCCBCCCKKKCCCBCC",
+      ".CCCCCCCCCCCCCC.",
+      "..CCCCCCCCCCCC..",
       "................",
       "................",
     ],
-    pal: { K: "#402b3d", P: "#ff8fa8", W: "#ffe3ee" },
+    pal: { C: "#ffffff", K: "#2b2140", B: "#ffb6c1" },
   },
   cloud: {
     rows: [
@@ -177,7 +173,7 @@ const SoundEngine = (() => {
    BOOT SEQUENCE
    ===================================================== */
 function initBoot() {
-  mountGroupSvg("boot-logo-pixels", PIXEL_ART.heart.rows, PIXEL_ART.heart.pal);
+  mountGroupSvg("boot-logo-pixels", PIXEL_ART["boot-cloud"].rows, PIXEL_ART["boot-cloud"].pal);
 
   const bootScreen = document.getElementById("boot-screen");
   const desktop = document.getElementById("desktop");
@@ -197,7 +193,7 @@ function initBoot() {
   ];
 
   const BLOCK_COUNT = 20;
-  const blockPalette = ["#ff9fc0", "#ffe3c2", "#b79cea"];
+  const blockPalette = ["#ffb6c1", "#ffdab9", "#e6e6fa"];
   const blockEls = [];
   for (let i = 0; i < BLOCK_COUNT; i++) {
     const span = document.createElement("span");
