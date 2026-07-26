@@ -22,8 +22,11 @@
     <button id="power-btn" class="pixel-btn pixel-corners">POWER ON &gt;&gt;</button>
 
     <div id="boot-progress-wrap" class="hidden">
-      <div class="boot-bar pixel-corners"><div id="boot-bar-fill"></div></div>
-      <div id="boot-status">loading pixels…</div>
+      <div id="boot-blocks" class="boot-blocks pixel-corners" aria-hidden="true"></div>
+      <div class="boot-status-row">
+        <span id="boot-status">loading pixels…</span><span class="blink" aria-hidden="true">_</span>
+      </div>
+      <div id="boot-percent" class="boot-percent">0%</div>
     </div>
   </div>
   <div class="boot-scanlines" aria-hidden="true"></div>

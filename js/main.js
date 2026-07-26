@@ -183,17 +183,34 @@ function initBoot() {
   const desktop = document.getElementById("desktop");
   const powerBtn = document.getElementById("power-btn");
   const progressWrap = document.getElementById("boot-progress-wrap");
-  const barFill = document.getElementById("boot-bar-fill");
+  const blocksEl = document.getElementById("boot-blocks");
   const status = document.getElementById("boot-status");
+  const percentEl = document.getElementById("boot-percent");
 
   const messages = [
-    "loading pixels…",
-    "brewing pastel gradients…",
-    "waking up the pixel girl…",
-    "hanging the sticky note…",
-    "polishing the dock…",
-    "almost there…",
+    "LOADING SHRUTHI OS v1.0 …",
+    "MOUNTING /pastel/clouds …",
+    "WAKING UP THE PIXEL GIRL …",
+    "HANGING THE STICKY NOTE …",
+    "POLISHING THE DOCK …",
+    "DESKTOP READY — PRESS ANY VIBE",
   ];
+
+  const BLOCK_COUNT = 20;
+  const blockPalette = ["#ff9fc0", "#ffe3c2", "#b79cea"];
+  const blockEls = [];
+  for (let i = 0; i < BLOCK_COUNT; i++) {
+    const span = document.createElement("span");
+    blocksEl.appendChild(span);
+    blockEls.push(span);
+  }
+
+  function renderBlocks(pct) {
+    const filled = Math.floor((pct / 100) * blockEls.length);
+    blockEls.forEach((el, i) => {
+      el.style.background = i < filled ? blockPalette[i % blockPalette.length] : "transparent";
+    });
+  }
 
   function runBoot() {
     SoundEngine.unlock();
@@ -201,23 +218,27 @@ function initBoot() {
     powerBtn.classList.add("hidden");
     progressWrap.classList.remove("hidden");
 
-    let pct = 0;
-    let msgIndex = 0;
+    const duration = 3200;
+    const start = Date.now();
+    let msgIndex = -1;
     status.textContent = messages[0];
+
     const timer = setInterval(() => {
-      pct += 8 + Math.random() * 10;
-      if (pct >= 100) {
-        pct = 100;
-        clearInterval(timer);
-        setTimeout(finishBoot, 350);
-      }
-      barFill.style.width = pct + "%";
+      const pct = Math.min(100, Math.round(((Date.now() - start) / duration) * 100));
+      renderBlocks(pct);
+      percentEl.textContent = pct + "%";
+
       const nextMsgIndex = Math.min(messages.length - 1, Math.floor((pct / 100) * messages.length));
       if (nextMsgIndex !== msgIndex) {
         msgIndex = nextMsgIndex;
         status.textContent = messages[msgIndex];
       }
-    }, 220);
+
+      if (pct >= 100) {
+        clearInterval(timer);
+        setTimeout(finishBoot, 450);
+      }
+    }, 60);
   }
 
   function finishBoot() {
