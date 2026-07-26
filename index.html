@@ -88,6 +88,10 @@
       <img class="icon-art" src="assets/icons/icon_event.png" alt="">
       <span class="icon-label">Sheraton Maldives</span>
     </button>
+    <button class="desktop-icon" data-window="guestbook" data-sound="click" aria-label="Open guestbook.txt">
+      <img class="icon-art" src="assets/icons/icon_guestbook.png" alt="">
+      <span class="icon-label">guestbook.txt</span>
+    </button>
   </div>
 
   <!-- pixel girl character above the dock -->
@@ -407,6 +411,25 @@
       <p>📍 Bengaluru, Karnataka</p>
     </div>
     <a class="pixel-btn pixel-corners" href="mailto:shruthi.kuttipravan@gmail.com?subject=Let%27s%20work%20together">✉ Send Email</a>
+  </div>
+</template>
+
+<template id="tpl-guestbook">
+  <div class="win-content guestbook-content">
+    <p class="project-blurb">Leave a pixel note — visible to everyone who visits after you.</p>
+    <form id="guestbook-form" class="guestbook-form" autocomplete="off">
+      <input type="text" id="guestbook-name" name="name" class="guestbook-input" placeholder="Your name (optional)" maxlength="30">
+      <textarea id="guestbook-message" name="message" class="guestbook-textarea" placeholder="Say hi…" maxlength="200" rows="3" required></textarea>
+      <input type="text" id="guestbook-website" name="website" class="guestbook-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="guestbook-form-foot">
+        <span id="guestbook-count" class="guestbook-count">200 left</span>
+        <button type="submit" class="pixel-btn pixel-corners guestbook-submit">Sign Guestbook &gt;&gt;</button>
+      </div>
+      <p id="guestbook-error" class="guestbook-error hidden"></p>
+    </form>
+    <div id="guestbook-list" class="guestbook-list">
+      <p class="guestbook-loading">loading notes…</p>
+    </div>
   </div>
 </template>
 

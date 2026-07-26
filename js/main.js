@@ -332,6 +332,7 @@ const WindowManager = (() => {
     projects: "Projects — Finder",
     contact: "Mail — New Message",
     trash: "Rejected_Concepts — Trash",
+    guestbook: "guestbook.txt — Notes",
   };
 
   function focus(win) {
@@ -387,6 +388,7 @@ const WindowManager = (() => {
     mountAllIcons();
     wireGalleryLightbox(win);
     wireHubButtons(win);
+    wireGuestbook(win);
 
     const titlebar = win.querySelector(".win-titlebar");
     makeDraggable(titlebar, win, () => focus(win));
@@ -456,6 +458,105 @@ function wireGalleryLightbox(scope) {
       lightbox.classList.remove("hidden");
       SoundEngine.click();
     });
+  });
+}
+
+/* =====================================================
+   GUESTBOOK.TXT — visitor notes (persisted via /api/guestbook)
+   ===================================================== */
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function formatGuestbookTime(ts) {
+  const d = new Date(ts);
+  if (isNaN(d)) return "";
+  return d.toLocaleDateString(undefined, { month: "short", day: "numeric" }) + " · " +
+         d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+}
+
+function renderGuestbookEntries(listEl, entries) {
+  if (!entries || !entries.length) {
+    listEl.innerHTML = `<p class="guestbook-empty">No notes yet — be the first to sign!</p>`;
+    return;
+  }
+  listEl.innerHTML = entries.map((entry) => `
+    <div class="guestbook-entry pixel-corners">
+      <div class="guestbook-entry-head">
+        <span class="guestbook-entry-name">${escapeHtml(entry.name || "Anonymous")}</span>
+        <span class="guestbook-entry-time">${formatGuestbookTime(entry.ts)}</span>
+      </div>
+      <p class="guestbook-entry-msg">${escapeHtml(entry.message || "")}</p>
+    </div>
+  `).join("");
+}
+
+function wireGuestbook(scope) {
+  const form = scope.querySelector("#guestbook-form");
+  if (!form) return;
+
+  const listEl = scope.querySelector("#guestbook-list");
+  const nameInput = scope.querySelector("#guestbook-name");
+  const msgInput = scope.querySelector("#guestbook-message");
+  const websiteInput = scope.querySelector("#guestbook-website");
+  const countEl = scope.querySelector("#guestbook-count");
+  const errorEl = scope.querySelector("#guestbook-error");
+  const submitBtn = form.querySelector(".guestbook-submit");
+  const MAX_LEN = 200;
+
+  function updateCount() {
+    countEl.textContent = `${Math.max(0, MAX_LEN - msgInput.value.length)} left`;
+  }
+  msgInput.addEventListener("input", updateCount);
+  updateCount();
+
+  async function loadEntries() {
+    try {
+      const res = await fetch("/api/guestbook");
+      if (!res.ok) throw new Error("load failed");
+      const data = await res.json();
+      renderGuestbookEntries(listEl, data.entries);
+    } catch (_) {
+      listEl.innerHTML = `<p class="guestbook-empty">Couldn't load notes right now — try reopening this window.</p>`;
+    }
+  }
+  loadEntries();
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorEl.classList.add("hidden");
+    const message = msgInput.value.trim();
+    if (!message) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Signing…";
+
+    try {
+      const res = await fetch("/api/guestbook", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: nameInput.value.trim(),
+          message,
+          website: websiteInput.value,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Could not save your note.");
+
+      SoundEngine.click();
+      msgInput.value = "";
+      updateCount();
+      await loadEntries();
+    } catch (err) {
+      errorEl.textContent = err.message || "Something went wrong — try again.";
+      errorEl.classList.remove("hidden");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Sign Guestbook >>";
+    }
   });
 }
 

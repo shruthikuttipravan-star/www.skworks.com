@@ -713,6 +713,58 @@ button, a { font-family: inherit; }
 .trash-tag.trash-accepted { color: var(--ok); text-decoration: none; }
 .trash-outro { text-align: center; font-size: var(--fs-sm); margin-top: var(--space-4); }
 
+/* ---------- guestbook ---------- */
+.guestbook-form {
+  margin: var(--space-3) 0 var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.guestbook-input, .guestbook-textarea {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-xs);
+  padding: 10px;
+  border: 3px solid var(--ink);
+  background: var(--cream);
+  color: var(--ink);
+}
+.guestbook-textarea { min-height: 64px; resize: vertical; }
+.guestbook-input:focus, .guestbook-textarea:focus { outline: none; border-color: var(--link); background: #fff; }
+.guestbook-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.guestbook-form-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.guestbook-count { font-size: var(--fs-2xs); color: var(--ink-soft); }
+.guestbook-submit { font-size: var(--fs-xs); padding: 10px 14px; }
+.guestbook-submit:disabled { opacity: 0.6; cursor: default; }
+.guestbook-submit:disabled:hover { background: var(--pink-deep); }
+.guestbook-error { color: #c23b5a; font-size: var(--fs-2xs); margin-top: 2px; }
+
+.guestbook-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.guestbook-entry {
+  background: var(--sticky-yellow);
+  border: 3px solid var(--ink);
+  padding: var(--space-3);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+.guestbook-entry:nth-child(3n+2) { background: var(--pink); }
+.guestbook-entry:nth-child(3n+3) { background: var(--peach); }
+.guestbook-entry-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.guestbook-entry-name { font-size: var(--fs-xs); color: var(--link); }
+.guestbook-entry-time { font-size: var(--fs-2xs); color: var(--ink-soft); }
+.guestbook-entry-msg { font-size: var(--fs-sm); margin: 0; word-break: break-word; white-space: pre-wrap; }
+.guestbook-empty, .guestbook-loading { font-size: var(--fs-xs); color: var(--ink-soft); text-align: center; padding: var(--space-4) 0; }
+
 /* ---------- lightbox ---------- */
 #lightbox {
   position: fixed;
