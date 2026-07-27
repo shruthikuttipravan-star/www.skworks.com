@@ -350,6 +350,7 @@ const WindowManager = (() => {
     contact: "Mail — New Message",
     trash: "Rejected_Concepts — Trash",
     guestbook: "guestbook.txt — Notes",
+    "other-works": "Other_Works — Finder",
   };
 
   function focus(win) {
