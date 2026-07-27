@@ -53,23 +53,6 @@ const PIXEL_ART = {
     ],
     pal: { K: "currentColor", S: "currentColor" },
   },
-  "boot-cloud": {
-    rows: [
-      "................",
-      "......CCCC......",
-      "....CCCCCCCC....",
-      "..CCCCCCCCCCCC..",
-      ".CCCCCCCCCCCCCC.",
-      "CCCCCCCCCCCCCCCC",
-      "CCCCCKCCCCKCCCCC",
-      "CCCBCCCKKKCCCBCC",
-      ".CCCCCCCCCCCCCC.",
-      "..CCCCCCCCCCCC..",
-      "................",
-      "................",
-    ],
-    pal: { C: "#ffffff", K: "#2b2140", B: "#ffb6c1" },
-  },
   cloud: {
     rows: [
       "........................",
@@ -112,13 +95,6 @@ function mountAllIcons() {
   document.querySelectorAll("[data-icon]").forEach((el) => {
     el.innerHTML = buildIconSvg(el.dataset.icon);
   });
-}
-
-function mountGroupSvg(groupId, rows, pal) {
-  const g = document.getElementById(groupId);
-  if (!g) return;
-  const { svg } = pixelSvgFragment(rows, pal);
-  g.innerHTML = svg;
 }
 
 /* =====================================================
@@ -173,8 +149,6 @@ const SoundEngine = (() => {
    BOOT SEQUENCE
    ===================================================== */
 function initBoot() {
-  mountGroupSvg("boot-logo-pixels", PIXEL_ART["boot-cloud"].rows, PIXEL_ART["boot-cloud"].pal);
-
   const bootScreen = document.getElementById("boot-screen");
   const desktop = document.getElementById("desktop");
   const powerBtn = document.getElementById("power-btn");
