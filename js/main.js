@@ -280,6 +280,7 @@ function makeDraggable(handle, target, onStart) {
   handle.addEventListener("pointerdown", (e) => {
     if (e.target.closest(".win-dot")) return;
     dragging = true;
+    target.classList.add("dragging");
     if (onStart) onStart();
     const rect = target.getBoundingClientRect();
     offX = e.clientX - rect.left;
@@ -301,6 +302,7 @@ function makeDraggable(handle, target, onStart) {
   });
   handle.addEventListener("pointerup", (e) => {
     dragging = false;
+    target.classList.remove("dragging");
     try { handle.releasePointerCapture(e.pointerId); } catch (_) {}
   });
 }
@@ -330,6 +332,8 @@ const WindowManager = (() => {
   function focus(win) {
     zTop += 1;
     win.style.zIndex = zTop;
+    openWindows.forEach((w) => w.classList.remove("focused"));
+    win.classList.add("focused");
   }
 
   function open(id) {
@@ -394,9 +398,9 @@ const WindowManager = (() => {
     win.querySelector(".win-dot.min").addEventListener("click", (e) => {
       e.stopPropagation();
       SoundEngine.close();
-      animateOut(win, () => {
+      minimizeOut(win, () => {
         win.classList.add("hidden");
-        win.classList.remove("closing");
+        win.classList.remove("minimizing");
       });
     });
     win.querySelector(".win-dot.max").addEventListener("click", (e) => {
@@ -406,8 +410,8 @@ const WindowManager = (() => {
     titlebar.addEventListener("dblclick", () => win.classList.toggle("maximized"));
   }
 
-  function animateOut(win, done) {
-    win.classList.add("closing");
+  function animateWith(win, className, done) {
+    win.classList.add(className);
     let finished = false;
     const finish = () => {
       if (finished) return;
@@ -415,7 +419,24 @@ const WindowManager = (() => {
       done();
     };
     win.addEventListener("animationend", finish, { once: true });
-    setTimeout(finish, 220);
+    setTimeout(finish, 350);
+  }
+
+  function animateOut(win, done) {
+    animateWith(win, "closing", done);
+  }
+
+  function minimizeOut(win, done) {
+    const dock = document.getElementById("dock");
+    if (dock) {
+      const winRect = win.getBoundingClientRect();
+      const dockRect = dock.getBoundingClientRect();
+      const dx = (dockRect.left + dockRect.width / 2) - (winRect.left + winRect.width / 2);
+      const dy = (dockRect.top + dockRect.height / 2) - (winRect.top + winRect.height / 2);
+      win.style.setProperty("--genie-x", dx + "px");
+      win.style.setProperty("--genie-y", dy + "px");
+    }
+    animateWith(win, "minimizing", done);
   }
 
   function close(id) {
@@ -578,6 +599,40 @@ function initIconClicks() {
 }
 
 /* =====================================================
+   DOCK MAGNIFICATION (macOS-style neighbor falloff)
+   ===================================================== */
+function initDockMagnify() {
+  const dock = document.getElementById("dock");
+  if (!dock) return;
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  const icons = Array.from(dock.querySelectorAll(".dock-icon"));
+  const MAX_SCALE = 1.45;
+  const RADIUS = 110;
+
+  function reset() {
+    icons.forEach((icon) => {
+      icon.style.transform = "";
+      icon.style.zIndex = "";
+    });
+  }
+
+  dock.addEventListener("pointermove", (e) => {
+    icons.forEach((icon) => {
+      const rect = icon.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
+      const dist = Math.abs(e.clientX - center);
+      const t = Math.max(0, 1 - dist / RADIUS);
+      const scale = 1 + (MAX_SCALE - 1) * t;
+      const lift = 12 * t;
+      icon.style.transform = `translateY(${-lift}px) scale(${scale})`;
+      icon.style.zIndex = String(Math.round(t * 100));
+    });
+  });
+  dock.addEventListener("pointerleave", reset);
+}
+
+/* =====================================================
    MENU BAR DROPDOWN
    ===================================================== */
 function initMenuDropdown() {
@@ -658,6 +713,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initClock();
   initClouds();
   initIconClicks();
+  initDockMagnify();
   initMenuDropdown();
   initShareButton();
   initStickyNote();
